@@ -115,6 +115,7 @@
   .box input:focus{outline:none;border-color:var(--gold-dk);box-shadow:0 0 0 3px rgba(219,177,39,.25)}
   .box button{width:100%;margin-top:12px;padding:12px;border:0;border-radius:10px;background:var(--forest);color:#fff;font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
   .box button:hover{background:var(--gold-dk)}
+  .box .hint{font-size:.8rem;color:#8A968F;margin-top:6px;text-align:left}
   .box .err{color:#C0392B;font-size:.85rem;min-height:1.2em;margin-top:8px}
   .box .cancel{background:transparent;color:var(--muted);margin-top:4px;font-weight:500}
   .box .cancel:hover{background:#F1EEE4}
@@ -146,6 +147,7 @@
     <h2>Amrabad Tiger Reserve<br>Database Monitoring System</h2>
     <p>Authorised staff only. Enter the dashboard password.</p>
     <input type="password" id="gatePw" placeholder="Password" aria-label="Dashboard password" required autofocus>
+    <div class="hint">Hint: xxxxx@1234</div>
     <button type="submit">Enter dashboard</button>
     <div class="err" id="gateErr" role="alert"></div>
   </form>
@@ -157,6 +159,7 @@
     <h2>Tiger Monitoring System</h2>
     <p>This module needs its own password.</p>
     <input type="password" id="tigerPw" placeholder="Tiger module password" aria-label="Tiger module password" required>
+    <div class="hint">Hint: xxxxx@1234</div>
     <button type="submit">Open Tiger Monitoring</button>
     <button type="button" class="cancel" id="tigerCancel">Cancel</button>
     <div class="err" id="tigerErr" role="alert"></div>
