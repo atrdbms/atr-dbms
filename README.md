@@ -4,6 +4,7 @@ Dashboard linking the ATR monitoring systems:
 
 - [M-STrIPES Monitoring System](https://atrdbms.github.io/amrabad-mstripes/)
 - [Tiger Monitoring System](https://atrdbms.github.io/amrabad-tigermonitoring/)
+- [Water Grid Management System](https://atrdbms.github.io/Watergrid/)
 
 Live site: https://atrdbms.github.io/atr-dbms/
 

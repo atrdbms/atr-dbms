@@ -69,6 +69,7 @@
   .card:hover .ico{transform:rotate(-4deg) scale(1.05)}
   .ico svg{width:72px;height:72px}
   .ico.ms{background:linear-gradient(145deg,#1F5A3A,#0F2D1F)}
+  .ico.wg{background:linear-gradient(145deg,#2B8FC4,#145A85)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
@@ -190,11 +191,11 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p>Access the field patrol records, wildlife sign surveys, camera-trap data and tiger profiles of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles and water structures of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">2 Modules</div></div>
-      <div class="stat"><div class="k">Focus</div><div class="v">Tiger &amp; Habitat</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">3 Modules</div></div>
+      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Water</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
   </div>
@@ -285,6 +286,41 @@
         </div>
         <div class="card-foot">
           <span class="url">Separate password required</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Water Grid -->
+      <a class="card" href="https://atrdbms.github.io/Watergrid/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="ico wg" aria-hidden="true">
+            <!-- Icon: water drop over a grid of water points linked by pipelines -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <g stroke="#9ED8F2" stroke-width="2.4" stroke-linecap="round">
+                <path d="M10 58h52M10 58V46M36 58V46M62 58V46"/>
+              </g>
+              <g fill="#DBB127"><circle cx="10" cy="46" r="3.6"/><circle cx="36" cy="46" r="3.6"/><circle cx="62" cy="46" r="3.6"/><circle cx="10" cy="58" r="2.6"/><circle cx="36" cy="58" r="2.6"/><circle cx="62" cy="58" r="2.6"/></g>
+              <path d="M36 6C36 6 22 21.5 22 30.5a14 14 0 0 0 28 0C50 21.5 36 6 36 6z" fill="#fff"/>
+              <path d="M36 14c0 0-8.6 10-8.6 16.2a8.6 8.6 0 0 0 17.2 0C44.6 24 36 14 36 14z" fill="#2B8FC4"/>
+              <path d="M31.5 31.5c0 2.6 1.8 4.6 4.3 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 38c3 2 5.5 2 8.5 0M45.5 38c3 2 5.5 2 8.5 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Water Resources Database</div>
+            <h4>Water Grid Management System</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Mapping and monitoring of water structures across the reserve, with photos, summary and detailed reports, and records from the live sheet.
+          <ul class="feat">
+            <li>Dashboard</li><li>Water map</li><li>Photos</li><li>Reports</li><li>Records</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/Watergrid</span>
           <span class="btn">Open system
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
