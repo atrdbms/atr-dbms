@@ -62,6 +62,7 @@
   .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
   .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .grid > .card:last-child:nth-child(odd){grid-column:1/-1}
   @media (max-width:760px){.grid{grid-template-columns:1fr}}
   .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
   .card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(22,61,42,.22);border-color:var(--gold);outline:none}
@@ -72,6 +73,7 @@
   .ico.ms{background:linear-gradient(145deg,#1F5A3A,#0F2D1F)}
   .ico.wg{background:linear-gradient(145deg,#2B8FC4,#145A85)}
   .ico.tcf{background:linear-gradient(145deg,#C8642A,#7A2E0E)}
+  .ico.bc{background:linear-gradient(145deg,#6E8B3D,#34481C)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
@@ -193,10 +195,10 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">4 Modules</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">5 Modules</div></div>
       <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat, Water &amp; Finance</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
@@ -323,6 +325,43 @@
         </div>
         <div class="card-foot">
           <span class="url">atrdbms.github.io/Watergrid</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Basecamp -->
+      <a class="card" href="https://atrdbms.github.io/amrabad-basecamp/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="ico bc" aria-hidden="true">
+            <!-- Icon: anti-poaching basecamp tent under a flag, with a photo report badge -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <path d="M4 60h56" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M32 10v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M32 10l10 3.5-10 3.5z" fill="#DBB127"/>
+              <path d="M32 18L8 60h48L32 18z" fill="#fff"/>
+              <path d="M32 18L22 60h20L32 18z" fill="#E7EFD9"/>
+              <path d="M32 34l-7 26h14l-7-26z" fill="#34481C"/>
+              <rect x="44" y="40" width="24" height="18" rx="4" fill="#163D2A" stroke="#DBB127" stroke-width="2.2"/>
+              <rect x="50" y="37" width="8" height="4" rx="1.5" fill="#DBB127"/>
+              <circle cx="56" cy="49" r="5" fill="#fff"/>
+              <circle cx="56" cy="49" r="2.6" fill="#6E8B3D"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Daily Picture Reports</div>
+            <h4>Basecamp Monitoring System</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Daily basecamp picture reports and staff attendance from the live sheet, with dashboards, a satellite map of basecamp locations and print, Excel and CSV exports.
+          <ul class="feat">
+            <li>Dashboard</li><li>GIS map</li><li>Basecamps</li><li>Reports</li><li>Records</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/amrabad-basecamp</span>
           <span class="btn">Open system
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
