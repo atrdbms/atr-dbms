@@ -1,0 +1,10 @@
+# Amrabad Tiger Reserve – Database Monitoring System (ATR DBMS)
+
+Dashboard linking the ATR monitoring systems:
+
+- [M-STrIPES Monitoring System](https://atrdbms.github.io/amrabad-mstripes/)
+- [Tiger Monitoring System](https://atrdbms.github.io/amrabad-tigermonitoring/)
+
+Live site: https://atrdbms.github.io/atr-dbms/
+
+Static site (index.html + assets/), served by GitHub Pages from the main branch root.

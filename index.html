@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATR DBMS – Amrabad Tiger Reserve Database Monitoring System</title>
+<meta name="description" content="Central dashboard of the Amrabad Tiger Reserve Database Monitoring System, Telangana Forest Department.">
+<link rel="icon" type="image/png" href="assets/atr-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#DBB127; --gold-dk:#B8901A; --gold-lt:#F6E7B0;
+    --forest:#163D2A; --forest-2:#1F5A3A; --leaf:#2E8B57; --emblem:#1E9B48;
+    --ink:#1B2A22; --muted:#5B6B62; --paper:#F7F4EC; --card:#FFFFFF;
+    --shadow:0 10px 30px rgba(22,61,42,.12); --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit}
+  .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+
+  /* Top government strip */
+  .gov-strip{background:var(--forest);color:#E8EFE9;font-size:.82rem;letter-spacing:.02em}
+  .gov-strip .wrap{display:flex;justify-content:space-between;gap:12px;padding:6px 0;flex-wrap:wrap}
+  .gov-strip span b{color:var(--gold)}
+
+  /* Header */
+  header.brand{background:#fff;border-bottom:4px solid var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.05)}
+  header.brand .wrap{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;padding:14px 0}
+  .logo{width:84px;height:84px;object-fit:contain;border-radius:50%;background:#fff}
+  .logo.atr{border:3px solid var(--gold);background:var(--gold)}
+  .title{text-align:center}
+  .title .dept{font-size:.85rem;font-weight:600;color:var(--forest-2);text-transform:uppercase;letter-spacing:.12em}
+  .title h1{font-family:Merriweather,Georgia,serif;font-weight:900;color:var(--forest);font-size:clamp(1.25rem,2.6vw,2rem);line-height:1.2;margin:4px 0}
+  .title .sub{color:var(--gold-dk);font-weight:700;letter-spacing:.06em;font-size:clamp(.8rem,1.4vw,1rem)}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;color:#fff;
+    background:
+      radial-gradient(1200px 400px at 85% -10%,rgba(219,177,39,.35),transparent 60%),
+      linear-gradient(135deg,#0F2D1F 0%,#163D2A 45%,#1F5A3A 100%)}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.09;pointer-events:none;
+    background:repeating-linear-gradient(115deg,transparent 0 38px,#000 38px 52px,transparent 52px 96px)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;padding:52px 0 92px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(219,177,39,.18);border:1px solid rgba(219,177,39,.5);color:var(--gold-lt);padding:5px 12px;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .hero h2{font-family:Merriweather,Georgia,serif;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.2;margin:16px 0 12px}
+  .hero h2 em{font-style:normal;color:var(--gold)}
+  .hero p{color:#D5E3DA;max-width:58ch}
+  .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 18px;backdrop-filter:blur(4px)}
+  .stat .k{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#B9CDBF}
+  .stat .v{font-family:Merriweather,Georgia,serif;font-size:1.25rem;color:var(--gold);margin-top:2px}
+  .clock{grid-column:1/-1}
+  .clock .v{color:#fff;font-family:Inter,sans-serif;font-weight:600;font-size:1.05rem}
+
+  /* Modules */
+  main{flex:1}
+  .modules{margin-top:-58px;position:relative;z-index:2}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
+  .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+  .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+  .card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(22,61,42,.22);border-color:var(--gold);outline:none}
+  .card-top{display:flex;gap:18px;align-items:center;padding:24px 24px 18px;background:linear-gradient(180deg,#FBF6E6,#fff)}
+  .card .ico{flex:none;width:96px;height:96px;border-radius:22px;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.12);transition:transform .3s}
+  .card:hover .ico{transform:rotate(-4deg) scale(1.05)}
+  .ico svg{width:72px;height:72px}
+  .ico.ms{background:linear-gradient(145deg,#1F5A3A,#0F2D1F)}
+  .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
+  .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
+  .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .card-body{padding:0 24px 8px;color:var(--muted);font-size:.95rem}
+  .feat{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+  .feat li{font-size:.78rem;font-weight:600;color:var(--forest-2);background:#EEF5F0;border:1px solid #D3E6DA;padding:4px 10px;border-radius:999px}
+  .card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-top:1px dashed #E5DCC2}
+  .url{font-size:.78rem;color:#8A968F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .btn{flex:none;display:inline-flex;align-items:center;gap:8px;background:var(--forest);color:#fff;font-weight:600;font-size:.9rem;padding:10px 16px;border-radius:10px;transition:background .2s}
+  .card:hover .btn{background:var(--gold-dk)}
+  .btn svg{width:16px;height:16px;transition:transform .2s}
+  .card:hover .btn svg{transform:translateX(3px)}
+
+  /* About */
+  .about{padding:48px 0 56px}
+  .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .pill{background:#fff;border-radius:14px;padding:20px;border-left:4px solid var(--gold);box-shadow:0 4px 14px rgba(0,0,0,.05)}
+  .pill h5{font-size:1rem;color:var(--forest);margin-bottom:4px}
+  .pill p{font-size:.9rem;color:var(--muted)}
+  .about h3{font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.35rem;margin-bottom:18px}
+  .about h3::after{content:"";display:block;width:56px;height:4px;border-radius:2px;background:var(--gold);margin-top:8px}
+
+  footer{background:var(--forest);color:#C9D8CE;font-size:.85rem}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:22px 0}
+  footer .f-brand{display:flex;align-items:center;gap:12px}
+  footer img{width:40px;height:40px;border-radius:50%;background:#fff}
+  footer b{color:var(--gold)}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
+  }
+  @media (max-width:600px){
+    header.brand .wrap{grid-template-columns:auto 1fr auto;gap:10px}
+    .logo{width:54px;height:54px}
+    .title .dept{font-size:.68rem;letter-spacing:.06em}
+    .gov-strip .wrap{justify-content:center;text-align:center}
+    .card-top{flex-direction:column;text-align:center}
+    .card-body{text-align:center}.feat{justify-content:center}
+    .grid{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span>Government of Telangana · <b>Telangana Forest Department</b></span>
+    <span>Nagarkurnool &amp; Nalgonda Districts</span>
+  </div>
+</div>
+
+<header class="brand">
+  <div class="wrap">
+    <img class="logo" src="assets/telangana-emblem.png" alt="Government of Telangana emblem">
+    <div class="title">
+      <div class="dept">Telangana Forest Department</div>
+      <h1>Amrabad Tiger Reserve</h1>
+      <div class="sub">DATABASE MONITORING SYSTEM (ATR DBMS)</div>
+    </div>
+    <img class="logo atr" src="assets/atr-logo.png" alt="Amrabad Tiger Reserve logo">
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">● Conserving Mother Nature</span>
+      <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
+      <p>Access the field patrol records, wildlife sign surveys, camera-trap data and tiger profiles of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="k">Systems</div><div class="v">2 Modules</div></div>
+      <div class="stat"><div class="k">Focus</div><div class="v">Tiger &amp; Habitat</div></div>
+      <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="modules wrap" id="modules">
+    <div class="section-head"><h3>Monitoring Systems</h3></div>
+    <div class="grid">
+
+      <!-- M-STrIPES -->
+      <a class="card" href="https://atrdbms.github.io/amrabad-mstripes/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="ico ms" aria-hidden="true">
+            <!-- Icon: patrol route with GPS pin and tiger pugmark -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <path d="M10 58c8-2 10-12 18-13s10 8 18 5 6-15 14-18" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="1 5.5"/>
+              <circle cx="10" cy="58" r="3.2" fill="#DBB127"/>
+              <path d="M51 6c-7.2 0-12.5 5.4-12.5 12.2 0 8.6 12.5 21 12.5 21s12.5-12.4 12.5-21C63.5 11.4 58.2 6 51 6z" fill="#fff"/>
+              <g fill="#1F5A3A">
+                <ellipse cx="51" cy="21.5" rx="4.6" ry="3.9"/>
+                <ellipse cx="45.6" cy="15.4" rx="1.6" ry="2.1" transform="rotate(-20 45.6 15.4)"/>
+                <ellipse cx="49.3" cy="12.6" rx="1.6" ry="2.2"/>
+                <ellipse cx="53.4" cy="12.7" rx="1.6" ry="2.2"/>
+                <ellipse cx="56.8" cy="15.6" rx="1.6" ry="2.1" transform="rotate(20 56.8 15.6)"/>
+              </g>
+              <g fill="#fff" opacity=".92">
+                <ellipse cx="23" cy="34" rx="3.6" ry="3"/>
+                <circle cx="19" cy="29.6" r="1.3"/><circle cx="22" cy="27.6" r="1.3"/><circle cx="25.2" cy="27.8" r="1.3"/><circle cx="27.8" cy="30" r="1.3"/>
+              </g>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Field Patrol Database</div>
+            <h4>M-STrIPES Monitoring System</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Patrol effort and wildlife-sign monitoring from M-STrIPES records, with officer-wise and beat-wise reports, a sign map and printable reports.
+          <ul class="feat">
+            <li>Patrol effort</li><li>Wildlife signs</li><li>Sign map &amp; KML</li><li>Officer reports</li><li>PDF / Excel</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/amrabad-mstripes</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Tiger Monitoring -->
+      <a class="card" href="https://atrdbms.github.io/amrabad-tigermonitoring/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="ico tm" aria-hidden="true">
+            <!-- Icon: camera trap strapped to tree with tiger stripes in the lens -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <rect x="6" y="6" width="9" height="60" rx="3" fill="#7A5A12" opacity=".55"/>
+              <rect x="4" y="20" width="13" height="4" rx="2" fill="#163D2A"/>
+              <rect x="4" y="48" width="13" height="4" rx="2" fill="#163D2A"/>
+              <rect x="15" y="14" width="46" height="44" rx="9" fill="#163D2A"/>
+              <rect x="20" y="19" width="12" height="7" rx="2" fill="#2E8B57"/>
+              <circle cx="54" cy="22" r="2.4" fill="#E2453C"/>
+              <circle cx="40" cy="38" r="14" fill="#0D2318" stroke="#DBB127" stroke-width="3"/>
+              <circle cx="40" cy="38" r="9.5" fill="#E89A2C"/>
+              <g stroke="#1B1B1B" stroke-width="2" stroke-linecap="round">
+                <path d="M33 33.5c2.6 1 4 1 6 .2"/>
+                <path d="M46.8 33.5c-2.6 1-4 1-6 .2"/>
+                <path d="M31.4 39.4c2.4.4 3.8 1.4 4.6 3"/>
+                <path d="M48.6 39.4c-2.4.4-3.8 1.4-4.6 3"/>
+              </g>
+              <ellipse cx="40" cy="41.5" rx="2.2" ry="1.6" fill="#1B1B1B"/>
+              <circle cx="36" cy="37" r="1.3" fill="#fff"/>
+              <circle cx="44" cy="37" r="1.3" fill="#fff"/>
+              <path d="M22 53h8" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Camera Trap &amp; Field Data</div>
+            <h4>Tiger Monitoring System</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Camera-trap and field tiger monitoring linked to the live ATR sheet, with individual tiger profiles, a GIS map and abstract and pivot reports.
+          <ul class="feat">
+            <li>Live database</li><li>Tiger profiles</li><li>GIS map</li><li>Abstract reports</li><li>CSV / Excel</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/amrabad-tigermonitoring</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="about wrap">
+    <h3>About ATR DBMS</h3>
+    <div class="about-grid">
+      <div class="pill"><h5>Centralised access</h5><p>All monitoring databases of the reserve are reached from this single dashboard.</p></div>
+      <div class="pill"><h5>Field to report</h5><p>Data collected by frontline staff turns into maps, summaries and printable reports.</p></div>
+      <div class="pill"><h5>Tiger conservation</h5><p>Supports protection, population monitoring and habitat management of Amrabad Tiger Reserve.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand">
+      <img src="assets/atr-logo.png" alt="">
+      <div><b>Amrabad Tiger Reserve</b><br>Database Monitoring System</div>
+    </div>
+    <div>© <span id="yr"></span> Telangana Forest Department · Government of Telangana</div>
+  </div>
+</footer>
+
+<script>
+  const d=new Date();
+  document.getElementById('yr').textContent=d.getFullYear();
+  document.getElementById('today').textContent=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+</script>
+</body>
+</html>
