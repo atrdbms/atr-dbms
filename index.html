@@ -61,7 +61,8 @@
   .modules{margin-top:-58px;position:relative;z-index:2}
   .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
   .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
   .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
   .card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(22,61,42,.22);border-color:var(--gold);outline:none}
   .card-top{display:flex;gap:18px;align-items:center;padding:24px 24px 18px;background:linear-gradient(180deg,#FBF6E6,#fff)}
@@ -70,6 +71,7 @@
   .ico svg{width:72px;height:72px}
   .ico.ms{background:linear-gradient(145deg,#1F5A3A,#0F2D1F)}
   .ico.wg{background:linear-gradient(145deg,#2B8FC4,#145A85)}
+  .ico.tcf{background:linear-gradient(145deg,#C8642A,#7A2E0E)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
@@ -154,16 +156,16 @@
   </form>
 </div>
 
-<div class="modal" id="tigerModal" hidden>
-  <form class="box" id="tigerForm" autocomplete="off">
+<div class="modal" id="lockModal" hidden>
+  <form class="box" id="lockForm" autocomplete="off">
     <div class="logos"><img class="atr" src="assets/atr-logo.png" alt=""></div>
-    <h2>Tiger Monitoring System</h2>
+    <h2 id="lockTitle">Restricted module</h2>
     <p>This module needs its own password.</p>
-    <input type="password" id="tigerPw" placeholder="Tiger module password" aria-label="Tiger module password" required>
+    <input type="password" id="lockPw" placeholder="Module password" aria-label="Module password" required>
     <div class="hint">Hint: xxxxx@1234</div>
-    <button type="submit">Open Tiger Monitoring</button>
-    <button type="button" class="cancel" id="tigerCancel">Cancel</button>
-    <div class="err" id="tigerErr" role="alert"></div>
+    <button type="submit" id="lockSubmit">Open module</button>
+    <button type="button" class="cancel" id="lockCancel">Cancel</button>
+    <div class="err" id="lockErr" role="alert"></div>
   </form>
 </div>
 
@@ -191,11 +193,11 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles and water structures of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">3 Modules</div></div>
-      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Water</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">4 Modules</div></div>
+      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat, Water &amp; Finance</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
   </div>
@@ -248,7 +250,7 @@
       </a>
 
       <!-- Tiger Monitoring -->
-      <a class="card" id="tigerCard" href="#tiger" role="button">
+      <a class="card locked" href="#" role="button" data-name="Tiger Monitoring" data-key="atrTiger" data-hash="2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe" data-url="https://atrdbms.github.io/amrabad-tigermonitoring/">
         <div class="card-top">
           <div class="ico tm" aria-hidden="true">
             <!-- Icon: camera trap strapped to tree with tiger stripes in the lens -->
@@ -327,6 +329,43 @@
         </div>
       </a>
 
+      <!-- Tiger Conservation Foundation -->
+      <a class="card locked" href="#" role="button" data-name="TCF" data-key="atrTcf" data-hash="de217cf981ee89ff12e8194eaafe22027f25749c97ec45b3e7b0364ed011ba57" data-url="https://atrdbms.github.io/tcf-atr/">
+        <div class="card-top">
+          <div class="ico tcf" aria-hidden="true">
+            <!-- Icon: conservation shield with tiger stripes over a ledger and rupee coin -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <rect x="8" y="34" width="34" height="30" rx="4" fill="#fff"/>
+              <g stroke="#C8642A" stroke-width="2.2" stroke-linecap="round"><path d="M14 43h22M14 50h22M14 57h14"/></g>
+              <path d="M44 6l20 7v14c0 13-8.6 21-20 25-11.4-4-20-12-20-25V13l20-7z" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
+              <g stroke="#1B1B1B" stroke-width="2.6" stroke-linecap="round">
+                <path d="M33 18c4 1.6 6 3.8 6.8 7"/><path d="M55 18c-4 1.6-6 3.8-6.8 7"/>
+                <path d="M32 30c3.6.4 6 2 7.4 4.6"/><path d="M56 30c-3.6.4-6 2-7.4 4.6"/>
+                <path d="M44 12v8"/>
+              </g>
+              <circle cx="50" cy="54" r="11" fill="#163D2A" stroke="#DBB127" stroke-width="2.6"/>
+              <path d="M45.5 48.5h9M45.5 52h9M47 48.5c5 0 5 7-1.5 7l6.5 5" stroke="#DBB127" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Finance Records</div>
+            <h4>Tiger Conservation Foundation (TCF) <span class="lock-badge">🔒 Restricted</span></h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Finance records of the TCF Scheme: annual plan of operations, receipts, expenditure against plan and cheques issued, with summary reports.
+          <ul class="feat">
+            <li>APO</li><li>Receipts</li><li>Expenditure</li><li>Cheques issued</li><li>Reports</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">Separate password required</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -358,8 +397,6 @@
   // Light client-side protection. Only salted SHA-256 hashes are stored here.
   const SALT='atr-dbms:';
   const DASH_HASH='4560a1ec86757265baa711c95a2d911304842b503efd7fb2f39192ad59486bca';
-  const TIGER_HASH='2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe';
-  const TIGER_URL='https://atrdbms.github.io/amrabad-tigermonitoring/';
   async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SALT+t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
   const $=id=>document.getElementById(id);
   function unlock(){document.body.classList.remove('locked');$('gate').hidden=true;}
@@ -368,17 +405,20 @@
     if(await sha($('gatePw').value)===DASH_HASH){sessionStorage.setItem('atrAuth',DASH_HASH);$('gatePw').value='';$('gateErr').textContent='';unlock();}
     else{$('gateErr').textContent='Incorrect password. Please try again.';$('gatePw').select();}});
   $('logout').addEventListener('click',()=>{sessionStorage.clear();location.reload();});
-  const modal=$('tigerModal');
-  function closeTiger(){modal.hidden=true;$('tigerPw').value='';$('tigerErr').textContent='';}
-  $('tigerCard').addEventListener('click',e=>{e.preventDefault();
-    if(sessionStorage.getItem('atrTiger')===TIGER_HASH){window.open(TIGER_URL,'_blank','noopener');return;}
-    modal.hidden=false;setTimeout(()=>$('tigerPw').focus(),50);});
-  $('tigerCancel').addEventListener('click',closeTiger);
-  modal.addEventListener('click',e=>{if(e.target===modal)closeTiger();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeTiger();});
-  $('tigerForm').addEventListener('submit',async e=>{e.preventDefault();
-    if(await sha($('tigerPw').value)===TIGER_HASH){sessionStorage.setItem('atrTiger',TIGER_HASH);closeTiger();window.open(TIGER_URL,'_blank','noopener');}
-    else{$('tigerErr').textContent='Incorrect password for the Tiger module.';$('tigerPw').select();}});
+  // Restricted modules: each card carries its own password hash and URL.
+  const modal=$('lockModal');let cur=null;
+  function closeLock(){modal.hidden=true;$('lockPw').value='';$('lockErr').textContent='';cur=null;}
+  document.querySelectorAll('.card.locked').forEach(card=>card.addEventListener('click',e=>{e.preventDefault();
+    const d=card.dataset;
+    if(sessionStorage.getItem(d.key)===d.hash){window.open(d.url,'_blank','noopener');return;}
+    cur=d;$('lockTitle').textContent=d.name+' System';$('lockSubmit').textContent='Open '+d.name;
+    modal.hidden=false;setTimeout(()=>$('lockPw').focus(),50);}));
+  $('lockCancel').addEventListener('click',closeLock);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeLock();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeLock();});
+  $('lockForm').addEventListener('submit',async e=>{e.preventDefault();if(!cur)return;
+    if(await sha($('lockPw').value)===cur.hash){sessionStorage.setItem(cur.key,cur.hash);const u=cur.url;closeLock();window.open(u,'_blank','noopener');}
+    else{$('lockErr').textContent='Incorrect password for the '+cur.name+' module.';$('lockPw').select();}});
 </script>
 </body>
 </html>
