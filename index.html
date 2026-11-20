@@ -61,8 +61,8 @@
   .modules{margin-top:-58px;position:relative;z-index:2}
   .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
   .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-  .grid > .card:last-child:nth-child(odd){grid-column:1/-1}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:760px){.grid{grid-template-columns:1fr}}
   .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
   .card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(22,61,42,.22);border-color:var(--gold);outline:none}
@@ -74,6 +74,7 @@
   .ico.wg{background:linear-gradient(145deg,#2B8FC4,#145A85)}
   .ico.tcf{background:linear-gradient(145deg,#C8642A,#7A2E0E)}
   .ico.bc{background:linear-gradient(145deg,#6E8B3D,#34481C)}
+  .ico.ff{background:linear-gradient(145deg,#E2552B,#8E1F12)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
@@ -195,11 +196,11 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">5 Modules</div></div>
-      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat, Water &amp; Finance</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">6 Modules</div></div>
+      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Protection</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
   </div>
@@ -362,6 +363,41 @@
         </div>
         <div class="card-foot">
           <span class="url">atrdbms.github.io/amrabad-basecamp</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Forest Fire -->
+      <a class="card" href="https://atrdbms.github.io/forest-fire/#reports" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="ico ff" aria-hidden="true">
+            <!-- Icon: flame over a forest tree line with a satellite alert ring -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <circle cx="36" cy="32" r="24" stroke="#FFD27A" stroke-width="2" stroke-dasharray="3 5" opacity=".8"/>
+              <path d="M36 8c2 9 13 13 13 26a13 13 0 0 1-26 0c0-6 3-10 6-13 0 5 2 8 5 9-1-8 0-15 2-22z" fill="#FFB238"/>
+              <path d="M36 26c1 5 7 7 7 13a7 7 0 0 1-14 0c0-3 1.6-5 3.2-6.6.4 2.6 1.4 4 2.8 4.6-.6-4.2 0-7.6 1-11z" fill="#FFF1C9"/>
+              <g fill="#163D2A">
+                <path d="M4 66l7-16 7 16z"/><path d="M14 66l8-19 8 19z"/>
+                <path d="M42 66l8-19 8 19z"/><path d="M54 66l7-16 7 16z"/>
+              </g>
+              <path d="M2 66h68" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Fire Incident Database</div>
+            <h4>Forest Fire Management System</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Tracks forest fire incidents across the reserve from the FFMIS sheet, with charts, satellite map layers, officer efficiency scores and reports.
+          <ul class="feat">
+            <li>Dashboard</li><li>Satellite map</li><li>Fire occurrences</li><li>Officers</li><li>Reports</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/forest-fire</span>
           <span class="btn">Open system
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>

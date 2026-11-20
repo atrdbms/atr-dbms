@@ -6,6 +6,7 @@ Dashboard linking the ATR monitoring systems:
 - [Tiger Monitoring System](https://atrdbms.github.io/amrabad-tigermonitoring/)
 - [Water Grid Management System](https://atrdbms.github.io/Watergrid/)
 - [Basecamp Monitoring System](https://atrdbms.github.io/amrabad-basecamp/)
+- [Forest Fire Management System](https://atrdbms.github.io/forest-fire/#reports)
 - [Tiger Conservation Foundation (TCF)](https://atrdbms.github.io/tcf-atr/)
 
 Live site: https://atrdbms.github.io/atr-dbms/
