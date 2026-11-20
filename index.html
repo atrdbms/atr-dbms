@@ -97,6 +97,32 @@
   footer img{width:40px;height:40px;border-radius:50%;background:#fff}
   footer b{color:var(--gold)}
 
+
+  /* Password gate & modal */
+  body.locked{overflow:hidden}
+  body.locked > :not(.gate){filter:blur(6px);pointer-events:none;user-select:none}
+  .gate,.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;
+    background:radial-gradient(900px 400px at 80% 0%,rgba(219,177,39,.35),transparent 60%),linear-gradient(135deg,rgba(15,45,31,.97),rgba(31,90,58,.96))}
+  .modal{background:rgba(15,45,31,.72);backdrop-filter:blur(3px)}
+  .gate[hidden],.modal[hidden]{display:none}
+  .box{width:min(400px,100%);background:#fff;border-radius:18px;padding:28px 26px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35);border-top:5px solid var(--gold)}
+  .box .logos{display:flex;justify-content:center;gap:14px;margin-bottom:12px}
+  .box .logos img{width:64px;height:64px;border-radius:50%;object-fit:contain}
+  .box .logos img.atr{background:var(--gold)}
+  .box h2{font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.2rem;line-height:1.3}
+  .box p{color:var(--muted);font-size:.9rem;margin:6px 0 16px}
+  .box input{width:100%;padding:12px 14px;border:1.5px solid #D8D2C0;border-radius:10px;font:inherit;font-size:1rem}
+  .box input:focus{outline:none;border-color:var(--gold-dk);box-shadow:0 0 0 3px rgba(219,177,39,.25)}
+  .box button{width:100%;margin-top:12px;padding:12px;border:0;border-radius:10px;background:var(--forest);color:#fff;font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+  .box button:hover{background:var(--gold-dk)}
+  .box .err{color:#C0392B;font-size:.85rem;min-height:1.2em;margin-top:8px}
+  .box .cancel{background:transparent;color:var(--muted);margin-top:4px;font-weight:500}
+  .box .cancel:hover{background:#F1EEE4}
+  .lock-badge{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;font-weight:700;color:#8A5A00;background:#FFF3CC;border:1px solid #F0D27A;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .card{cursor:pointer}
+  .logout{background:none;border:1px solid rgba(255,255,255,.35);color:#E8EFE9;border-radius:6px;padding:1px 10px;font:inherit;font-size:.78rem;cursor:pointer;margin-left:10px}
+  .logout:hover{border-color:var(--gold);color:var(--gold)}
+
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
   }
@@ -112,12 +138,35 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div class="gate" id="gate">
+  <form class="box" id="gateForm" autocomplete="off">
+    <div class="logos"><img src="assets/telangana-emblem.png" alt="Government of Telangana emblem"><img class="atr" src="assets/atr-logo.png" alt="Amrabad Tiger Reserve logo"></div>
+    <h2>Amrabad Tiger Reserve<br>Database Monitoring System</h2>
+    <p>Authorised staff only. Enter the dashboard password.</p>
+    <input type="password" id="gatePw" placeholder="Password" aria-label="Dashboard password" required autofocus>
+    <button type="submit">Enter dashboard</button>
+    <div class="err" id="gateErr" role="alert"></div>
+  </form>
+</div>
+
+<div class="modal" id="tigerModal" hidden>
+  <form class="box" id="tigerForm" autocomplete="off">
+    <div class="logos"><img class="atr" src="assets/atr-logo.png" alt=""></div>
+    <h2>Tiger Monitoring System</h2>
+    <p>This module needs its own password.</p>
+    <input type="password" id="tigerPw" placeholder="Tiger module password" aria-label="Tiger module password" required>
+    <button type="submit">Open Tiger Monitoring</button>
+    <button type="button" class="cancel" id="tigerCancel">Cancel</button>
+    <div class="err" id="tigerErr" role="alert"></div>
+  </form>
+</div>
 
 <div class="gov-strip">
   <div class="wrap">
     <span>Government of Telangana · <b>Telangana Forest Department</b></span>
-    <span>Nagarkurnool &amp; Nalgonda Districts</span>
+    <span>Nagarkurnool &amp; Nalgonda Districts <button class="logout" id="logout" type="button">Log out</button></span>
   </div>
 </div>
 
@@ -195,7 +244,7 @@
       </a>
 
       <!-- Tiger Monitoring -->
-      <a class="card" href="https://atrdbms.github.io/amrabad-tigermonitoring/" target="_blank" rel="noopener">
+      <a class="card" id="tigerCard" href="#tiger" role="button">
         <div class="card-top">
           <div class="ico tm" aria-hidden="true">
             <!-- Icon: camera trap strapped to tree with tiger stripes in the lens -->
@@ -222,7 +271,7 @@
           </div>
           <div>
             <div class="tag">Camera Trap &amp; Field Data</div>
-            <h4>Tiger Monitoring System</h4>
+            <h4>Tiger Monitoring System <span class="lock-badge">🔒 Restricted</span></h4>
           </div>
         </div>
         <div class="card-body">
@@ -232,7 +281,7 @@
           </ul>
         </div>
         <div class="card-foot">
-          <span class="url">atrdbms.github.io/amrabad-tigermonitoring</span>
+          <span class="url">Separate password required</span>
           <span class="btn">Open system
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
@@ -266,6 +315,31 @@
   const d=new Date();
   document.getElementById('yr').textContent=d.getFullYear();
   document.getElementById('today').textContent=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+  // Light client-side protection. Only salted SHA-256 hashes are stored here.
+  const SALT='atr-dbms:';
+  const DASH_HASH='4560a1ec86757265baa711c95a2d911304842b503efd7fb2f39192ad59486bca';
+  const TIGER_HASH='2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe';
+  const TIGER_URL='https://atrdbms.github.io/amrabad-tigermonitoring/';
+  async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SALT+t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+  const $=id=>document.getElementById(id);
+  function unlock(){document.body.classList.remove('locked');$('gate').hidden=true;}
+  if(sessionStorage.getItem('atrAuth')===DASH_HASH) unlock();
+  $('gateForm').addEventListener('submit',async e=>{e.preventDefault();
+    if(await sha($('gatePw').value)===DASH_HASH){sessionStorage.setItem('atrAuth',DASH_HASH);$('gatePw').value='';$('gateErr').textContent='';unlock();}
+    else{$('gateErr').textContent='Incorrect password. Please try again.';$('gatePw').select();}});
+  $('logout').addEventListener('click',()=>{sessionStorage.clear();location.reload();});
+  const modal=$('tigerModal');
+  function closeTiger(){modal.hidden=true;$('tigerPw').value='';$('tigerErr').textContent='';}
+  $('tigerCard').addEventListener('click',e=>{e.preventDefault();
+    if(sessionStorage.getItem('atrTiger')===TIGER_HASH){window.open(TIGER_URL,'_blank','noopener');return;}
+    modal.hidden=false;setTimeout(()=>$('tigerPw').focus(),50);});
+  $('tigerCancel').addEventListener('click',closeTiger);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeTiger();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeTiger();});
+  $('tigerForm').addEventListener('submit',async e=>{e.preventDefault();
+    if(await sha($('tigerPw').value)===TIGER_HASH){sessionStorage.setItem('atrTiger',TIGER_HASH);closeTiger();window.open(TIGER_URL,'_blank','noopener');}
+    else{$('tigerErr').textContent='Incorrect password for the Tiger module.';$('tigerPw').select();}});
 </script>
 </body>
 </html>
