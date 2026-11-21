@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#163D2A">
 <title>ATR DBMS – Amrabad Tiger Reserve Database Monitoring System</title>
 <meta name="description" content="Central dashboard of the Amrabad Tiger Reserve Database Monitoring System, Telangana Forest Department.">
 <link rel="icon" type="image/png" href="assets/atr-logo.png">
@@ -140,19 +141,83 @@
   .sc .ico svg{width:44px;height:44px}
   .sc .lk{position:absolute;top:6px;right:calc(50% - 40px);font-size:.7rem;background:#FFF3CC;border:1px solid #F0D27A;border-radius:999px;width:20px;height:20px;display:grid;place-items:center}
   @media (max-width:760px){.shortcuts .wrap{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:380px){.sc{font-size:.78rem}.sc .ico{width:52px;height:52px}.sc .ico svg{width:38px;height:38px}}
 
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
   }
+  /* ---------- Phones first: field staff use the app ---------- */
+  body{-webkit-tap-highlight-color:transparent}
+  .box input{font-size:16px}
   @media (max-width:600px){
-    header.brand .wrap{grid-template-columns:auto 1fr auto;gap:10px}
-    .logo{width:54px;height:54px}
-    .title .dept{font-size:.68rem;letter-spacing:.06em}
-    .gov-strip .wrap{justify-content:center;text-align:center}
-    .card-top{flex-direction:column;text-align:center}
-    .card-body{text-align:center}.feat{justify-content:center}
-    .grid{grid-template-columns:1fr}
+    body{font-size:16px}
+    .wrap{width:calc(100% - 24px)}
+    /* top strip: one line, big log out */
+    .gov-strip{padding-top:env(safe-area-inset-top)}
+    .gov-strip .wrap{flex-wrap:nowrap;align-items:center;padding:6px 0;font-size:.78rem}
+    .gov-strip .dist{display:none}
+    .logout{padding:7px 14px;font-size:.85rem;border-radius:8px;min-height:36px}
+    .logout{white-space:nowrap;flex:none}
+    .gov-strip .wrap > span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+    .gov-strip .wrap > span:last-child{flex:none}
+    .hero-stats .stat:not(.clock){display:none}
+    .hero-stats{grid-template-columns:1fr}
+    /* header */
+    header.brand .wrap{gap:10px;padding:10px 0}
+    .logo{width:52px;height:52px}
+    .title .dept{font-size:.62rem;letter-spacing:.05em}
+    .title h1{font-size:1.2rem;margin:2px 0}
+    .title .sub{font-size:.68rem;letter-spacing:.03em}
+    /* shortcuts: 3 x 2 grid of big tap targets */
+    .shortcuts .wrap{grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 0}
+    .sc{min-height:104px;padding:12px 4px 10px;font-size:.88rem;background:#FAF8F1;border:1px solid #EEE7D3}
+    .sc:active{transform:scale(.96);background:#F6EDCC}
+    .sc .ico{width:60px;height:60px;border-radius:16px}
+    .sc .ico svg{width:44px;height:44px}
+    .sc .lk{right:8px;top:8px}
+    /* hero: short, date only */
+    .hero .wrap{padding:22px 0 70px;gap:16px}
+    .hero h2{font-size:1.5rem;margin:12px 0 8px}
+    .hero .lead{font-size:.95rem}
+    .eyebrow{font-size:.7rem}
+    .hero-stats{grid-template-columns:1fr 1fr;gap:10px}
+    .hero-stats .stat{padding:12px 14px}
+    .stat .v{font-size:1.05rem}
+    .clock .v{font-size:.95rem}
+    .modules{margin-top:-48px}
+    .section-head h3{font-size:1.05rem}
+    /* cards: compact row header, full-width big button */
+    .grid{grid-template-columns:1fr;gap:16px}
+    .card-top{flex-direction:row;text-align:left;gap:14px;padding:16px 16px 12px}
+    .card .ico{width:68px;height:68px;border-radius:18px}
+    .card .ico svg{width:50px;height:50px}
+    .card h4{font-size:1.12rem}
+    .card .tag{font-size:.72rem}
+    .lock-badge{margin-left:0;margin-top:4px}
+    .card-body{padding:0 16px 4px;text-align:left;font-size:.95rem}
+    .feat{justify-content:flex-start;margin:12px 0 4px}
+    .feat li{font-size:.78rem;padding:5px 10px}
+    .card-foot{padding:12px 16px 16px;border-top:0}
+    .card-foot .url{display:none}
+    .btn{width:100%;justify-content:center;min-height:52px;font-size:1rem;border-radius:12px}
+    .card:hover{transform:none}
+    .card:active{transform:scale(.985)}
+    /* about + footer */
+    .about{padding:32px 0 36px}
+    .about-grid{gap:12px}
+    footer .wrap{flex-direction:column;text-align:center;padding:18px 0 calc(18px + env(safe-area-inset-bottom))}
+    /* login + module password boxes */
+    .gate,.modal{align-items:start;padding:max(24px,env(safe-area-inset-top)) 14px 24px;overflow-y:auto}
+    .box{padding:24px 18px;margin-top:8vh}
+    .box input{padding:14px;min-height:52px}
+    .box button{min-height:52px;font-size:1.05rem}
+    .box .cancel{min-height:48px}
+  }
+  @media (max-width:360px){
+    .title h1{font-size:1.05rem}
+    .logo{width:44px;height:44px}
+    .sc{font-size:.8rem;min-height:96px}
+    .sc .ico{width:52px;height:52px}.sc .ico svg{width:38px;height:38px}
+    .hero-stats .stat:not(.clock){display:none}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -187,7 +252,7 @@
 <div class="gov-strip">
   <div class="wrap">
     <span>Government of Telangana · <b>Telangana Forest Department</b></span>
-    <span>Nagarkurnool &amp; Nalgonda Districts <button class="logout" id="logout" type="button">Log out</button></span>
+    <span><span class="dist">Nagarkurnool &amp; Nalgonda Districts</span> <button class="logout" id="logout" type="button">Log out</button></span>
   </div>
 </div>
 
@@ -212,7 +277,7 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p>Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="k">Systems</div><div class="v">6 Modules</div></div>
