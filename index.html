@@ -63,6 +63,7 @@
   .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
   .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (min-width:1101px){.grid > .card:last-child:nth-child(3n+1){grid-column:1/-1}}
   @media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:760px){.grid{grid-template-columns:1fr}}
   .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
@@ -77,6 +78,7 @@
   .ico.bc{background:linear-gradient(145deg,#6E8B3D,#34481C)}
   .ico.ff{background:linear-gradient(145deg,#E2552B,#8E1F12)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
+  .ico.rofr{background:linear-gradient(145deg,#2E9C86,#125246)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
   .card-body{padding:0 24px 8px;color:var(--muted);font-size:.95rem}
@@ -140,7 +142,7 @@
   .sc .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.14)}
   .sc .ico svg{width:44px;height:44px}
   .sc .lk{position:absolute;top:6px;right:calc(50% - 40px);font-size:.7rem;background:#FFF3CC;border:1px solid #F0D27A;border-radius:999px;width:20px;height:20px;display:grid;place-items:center}
-  @media (max-width:760px){.sc-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:760px){.sc-grid{grid-template-columns:repeat(4,1fr)}}
 
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
@@ -153,7 +155,7 @@
   .menu a:hover{color:#fff}
   .menu a.active{color:var(--gold);border-bottom-color:var(--gold)}
   .sc-head{display:none}
-  .sc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .sc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
   .shortcuts .wrap{display:block}
   /* About */
   .about-hero{color:#fff;background:radial-gradient(900px 300px at 85% -10%,rgba(219,177,39,.35),transparent 60%),linear-gradient(135deg,#0F2D1F,#1F5A3A);padding:40px 0 44px}
@@ -295,7 +297,7 @@
     .menu a svg{width:24px;height:24px}
     .menu a.active{border-top-color:var(--gold);border-bottom-color:transparent;background:rgba(255,255,255,.06)}
     .sc-head{display:block;font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.05rem;margin:2px 2px 10px}
-    .sc-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+    .sc-grid{grid-template-columns:repeat(4,1fr);gap:6px}
     .about-hero{padding:24px 0 26px}
     .about-text p{font-size:.98rem}
     .facts{gap:10px;margin:16px 0 28px}
@@ -399,10 +401,10 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records and TCF finance records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records and forest rights (RoFR) records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">6 Modules</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">7 Modules</div></div>
       <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Protection</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
@@ -644,6 +646,42 @@
         </div>
       </a>
 
+      <!-- RoFR: Recognition of Forest Rights -->
+      <a class="card" href="https://atrdbms.github.io/atr-rofr/" target="_blank" data-short="RoFR" rel="noopener">
+        <div class="card-top">
+          <div class="ico rofr" aria-hidden="true">
+            <!-- Icon: title-deed document with a tree, over a homestead, with an approval seal -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <path d="M16 6h30l12 12v40a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z" fill="#fff"/>
+              <path d="M46 6v10a2 2 0 0 0 2 2h10" fill="#D8E9E4"/>
+              <circle cx="30" cy="22" r="8" fill="#2E8B57"/>
+              <path d="M30 28v8" stroke="#6B4A2B" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M18 44l8-6 8 6v8H18z" fill="#DBB127"/>
+              <path d="M24 52v-5h4v5" fill="#7A5A12"/>
+              <path d="M38 41h12M38 47h10" stroke="#9DB8AF" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="52" cy="54" r="10" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
+              <path d="M47.5 54l3.2 3.2 6-6.4" stroke="#163D2A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Forest Rights Database</div>
+            <h4>RoFR – Recognition of Forest Rights</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Records claims and titles under the Forest Rights Act for villages in and around the reserve, covering individual and community forest rights.
+          <ul class="feat">
+            <li>Claims</li><li>Titles</li><li>Villages</li><li>Reports</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/atr-rofr</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -672,7 +710,7 @@
     </div>
     <h3>About ATR DBMS</h3>
     <div class="about-grid">
-      <div class="pill"><h5>Centralised access</h5><p>All six monitoring databases of the reserve are reached from this single dashboard.</p></div>
+      <div class="pill"><h5>Centralised access</h5><p>All seven monitoring databases of the reserve are reached from this single dashboard.</p></div>
       <div class="pill"><h5>Field to report</h5><p>Data collected by frontline staff turns into maps, summaries and printable reports.</p></div>
       <div class="pill"><h5>Tiger conservation</h5><p>Supports protection, population monitoring and habitat management of Amrabad Tiger Reserve.</p></div>
     </div>
