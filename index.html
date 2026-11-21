@@ -191,6 +191,19 @@
   .lb-close:hover,.lb-nav:hover{background:rgba(255,255,255,.25)}
   @media (max-width:900px){.facts{grid-template-columns:repeat(2,1fr)}}
 
+  /* Scrolling messages ticker (edit messages in assets/ticker.js) */
+  .ticker{display:flex;align-items:stretch;background:#FFF8E1;border-bottom:1px solid #F0D27A;font-size:.92rem;overflow:hidden}
+  .ticker[hidden]{display:none}
+  .tk-label{flex:none;display:flex;align-items:center;gap:6px;padding:0 14px;background:var(--gold);color:var(--forest);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;position:relative;z-index:1}
+  .tk-viewport{flex:1;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+  .tk-track{display:inline-flex;white-space:nowrap;padding:9px 0;animation:tk var(--tk-dur,60s) linear infinite;will-change:transform}
+  .ticker:hover .tk-track,.ticker.paused .tk-track{animation-play-state:paused}
+  .tk-item{display:inline-flex;align-items:center;color:#4A3B0B;padding:0 8px}
+  .tk-item::after{content:"◆";color:var(--gold-dk);font-size:.6rem;margin-left:16px}
+  .tk-item.imp{color:#8A2E0E;font-weight:700}
+  @keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.tk-track{animation:none;white-space:normal;flex-wrap:wrap}}
+
   /* ---------- Phones first: field staff use the app ---------- */
   body{-webkit-tap-highlight-color:transparent}
   .box input{font-size:16px}
@@ -251,6 +264,10 @@
     .about{padding:32px 0 36px}
     .about-grid{gap:12px}
     footer .wrap{flex-direction:column;text-align:center;padding:18px 0 calc(18px + env(safe-area-inset-bottom))}
+    .ticker{font-size:.9rem}
+    .tk-label{padding:0 10px}
+    .tk-label span{display:none}
+    .tk-track{padding:11px 0}
     /* bottom tab bar */
     body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
     .menu{position:fixed;top:auto;bottom:0;left:0;right:0;box-shadow:0 -4px 16px rgba(0,0,0,.2);padding-bottom:env(safe-area-inset-bottom)}
@@ -336,6 +353,11 @@
     <img class="logo atr" src="assets/atr-logo.png" alt="Amrabad Tiger Reserve logo">
   </div>
 </header>
+
+<div class="ticker" id="ticker" role="marquee" aria-label="Important messages">
+  <div class="tk-label">📢 <span>Updates</span></div>
+  <div class="tk-viewport"><div class="tk-track" id="tkTrack"></div></div>
+</div>
 
 <nav class="menu" aria-label="Main menu">
   <div class="wrap">
@@ -666,6 +688,7 @@
   </div>
 </footer>
 
+<script src="assets/ticker.js"></script>
 <script>
   const d=new Date();
   document.getElementById('yr').textContent=d.getFullYear();
@@ -768,6 +791,18 @@
   let tx=null;
   $('lightbox').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
   $('lightbox').addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)step(dx<0?1:-1);tx=null;});
+
+  // ---- Scrolling messages ----
+  (function(){
+    const msgs=(window.ATR_TICKER||[]).filter(Boolean);
+    if(!msgs.length){$('ticker').hidden=true;return;}
+    const html=msgs.map(m=>{const imp=m.startsWith('!');const t=imp?m.slice(1):m;
+      const sp=document.createElement('span');sp.className='tk-item'+(imp?' imp':'');sp.textContent=t;return sp.outerHTML;}).join('');
+    $('tkTrack').innerHTML=html+html; // doubled for a seamless loop
+    const len=msgs.join(' ').length;
+    $('ticker').style.setProperty('--tk-dur',Math.max(25,Math.round(len/7))+'s');
+    $('ticker').addEventListener('click',()=>$('ticker').classList.toggle('paused')); // tap to pause on phones
+  })();
 </script>
 </body>
 </html>
