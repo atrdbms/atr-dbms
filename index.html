@@ -130,6 +130,18 @@
   .logout{background:none;border:1px solid rgba(255,255,255,.35);color:#E8EFE9;border-radius:6px;padding:1px 10px;font:inherit;font-size:.78rem;cursor:pointer;margin-left:10px}
   .logout:hover{border-color:var(--gold);color:var(--gold)}
 
+
+  /* Shortcut row */
+  .shortcuts{background:#fff;border-bottom:1px solid #E7E1D0}
+  .shortcuts .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:14px 0}
+  .sc{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;border-radius:14px;text-decoration:none;color:var(--forest);font-weight:600;font-size:.86rem;text-align:center;line-height:1.2;transition:background .2s,transform .2s}
+  .sc:hover,.sc:focus-visible{background:#FBF6E6;transform:translateY(-3px);outline:none}
+  .sc .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.14)}
+  .sc .ico svg{width:44px;height:44px}
+  .sc .lk{position:absolute;top:6px;right:calc(50% - 40px);font-size:.7rem;background:#FFF3CC;border:1px solid #F0D27A;border-radius:999px;width:20px;height:20px;display:grid;place-items:center}
+  @media (max-width:760px){.shortcuts .wrap{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:380px){.sc{font-size:.78rem}.sc .ico{width:52px;height:52px}.sc .ico svg{width:38px;height:38px}}
+
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
   }
@@ -191,6 +203,10 @@
   </div>
 </header>
 
+<nav class="shortcuts" aria-label="Module shortcuts">
+  <div class="wrap" id="shortcuts"></div>
+</nav>
+
 <section class="hero">
   <div class="wrap">
     <div>
@@ -212,7 +228,7 @@
     <div class="grid">
 
       <!-- M-STrIPES -->
-      <a class="card" href="https://atrdbms.github.io/amrabad-mstripes/" target="_blank" rel="noopener">
+      <a class="card" href="https://atrdbms.github.io/amrabad-mstripes/" target="_blank" data-short="M-STrIPES" rel="noopener">
         <div class="card-top">
           <div class="ico ms" aria-hidden="true">
             <!-- Icon: patrol route with GPS pin and tiger pugmark -->
@@ -253,7 +269,7 @@
       </a>
 
       <!-- Tiger Monitoring -->
-      <a class="card locked" href="#" role="button" data-name="Tiger Monitoring" data-key="atrTiger" data-hash="2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe" data-url="https://atrdbms.github.io/amrabad-tigermonitoring/">
+      <a class="card locked" href="#" role="button" data-name="Tiger Monitoring" data-short="Tiger Monitoring" data-key="atrTiger" data-hash="2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe" data-url="https://atrdbms.github.io/amrabad-tigermonitoring/">
         <div class="card-top">
           <div class="ico tm" aria-hidden="true">
             <!-- Icon: camera trap strapped to tree with tiger stripes in the lens -->
@@ -298,7 +314,7 @@
       </a>
 
       <!-- Water Grid -->
-      <a class="card" href="https://atrdbms.github.io/Watergrid/" target="_blank" rel="noopener">
+      <a class="card" href="https://atrdbms.github.io/Watergrid/" target="_blank" data-short="Water Grid" rel="noopener">
         <div class="card-top">
           <div class="ico wg" aria-hidden="true">
             <!-- Icon: water drop over a grid of water points linked by pipelines -->
@@ -333,7 +349,7 @@
       </a>
 
       <!-- Basecamp -->
-      <a class="card" href="https://atrdbms.github.io/amrabad-basecamp/" target="_blank" rel="noopener">
+      <a class="card" href="https://atrdbms.github.io/amrabad-basecamp/" target="_blank" data-short="Basecamp" rel="noopener">
         <div class="card-top">
           <div class="ico bc" aria-hidden="true">
             <!-- Icon: anti-poaching basecamp tent under a flag, with a photo report badge -->
@@ -370,7 +386,7 @@
       </a>
 
       <!-- Forest Fire -->
-      <a class="card" href="https://atrdbms.github.io/forest-fire/#reports" target="_blank" rel="noopener">
+      <a class="card" href="https://atrdbms.github.io/forest-fire/#reports" target="_blank" data-short="Forest Fire" rel="noopener">
         <div class="card-top">
           <div class="ico ff" aria-hidden="true">
             <!-- Icon: flame over a forest tree line with a satellite alert ring -->
@@ -405,7 +421,7 @@
       </a>
 
       <!-- Tiger Conservation Foundation -->
-      <a class="card locked" href="#" role="button" data-name="TCF" data-key="atrTcf" data-hash="de217cf981ee89ff12e8194eaafe22027f25749c97ec45b3e7b0364ed011ba57" data-url="https://atrdbms.github.io/tcf-atr/">
+      <a class="card locked" href="#" role="button" data-name="TCF" data-short="TCF" data-key="atrTcf" data-hash="de217cf981ee89ff12e8194eaafe22027f25749c97ec45b3e7b0364ed011ba57" data-url="https://atrdbms.github.io/tcf-atr/">
         <div class="card-top">
           <div class="ico tcf" aria-hidden="true">
             <!-- Icon: conservation shield with tiger stripes over a ledger and rupee coin -->
@@ -494,6 +510,17 @@
   $('lockForm').addEventListener('submit',async e=>{e.preventDefault();if(!cur)return;
     if(await sha($('lockPw').value)===cur.hash){sessionStorage.setItem(cur.key,cur.hash);const u=cur.url;closeLock();window.open(u,'_blank','noopener');}
     else{$('lockErr').textContent='Incorrect password for the '+cur.name+' module.';$('lockPw').select();}});
+
+  // Shortcut row: icon + name for every module card; clicking behaves exactly like the card (same password rules).
+  document.querySelectorAll('.grid > .card').forEach(card=>{
+    const a=document.createElement('a');a.className='sc';a.href='#';
+    a.setAttribute('aria-label','Open '+card.dataset.short);
+    a.appendChild(card.querySelector('.ico').cloneNode(true));
+    if(card.classList.contains('locked')){const l=document.createElement('span');l.className='lk';l.textContent='🔒';l.title='Separate password required';a.appendChild(l);}
+    const n=document.createElement('span');n.textContent=card.dataset.short;a.appendChild(n);
+    a.addEventListener('click',e=>{e.preventDefault();card.click();});
+    $('shortcuts').appendChild(a);
+  });
 </script>
 </body>
 </html>
