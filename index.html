@@ -78,6 +78,7 @@
   .ico.bc{background:linear-gradient(145deg,#6E8B3D,#34481C)}
   .ico.ff{background:linear-gradient(145deg,#E2552B,#8E1F12)}
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
+  .ico.cw{background:linear-gradient(145deg,#7A8796,#34404D)}
   .ico.rofr{background:linear-gradient(145deg,#2E9C86,#125246)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
@@ -155,7 +156,7 @@
   .menu a:hover{color:#fff}
   .menu a.active{color:var(--gold);border-bottom-color:var(--gold)}
   .sc-head{display:none}
-  .sc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+  .sc-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
   .shortcuts .wrap{display:block}
   /* About */
   .about-hero{color:#fff;background:radial-gradient(900px 300px at 85% -10%,rgba(219,177,39,.35),transparent 60%),linear-gradient(135deg,#0F2D1F,#1F5A3A);padding:40px 0 44px}
@@ -401,10 +402,10 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records and forest rights (RoFR) records of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records, forest rights (RoFR) records and forest civil works of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">7 Modules</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">8 Modules</div></div>
       <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Protection</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
@@ -682,6 +683,43 @@
         </div>
       </a>
 
+      <!-- Forest Civil Works -->
+      <a class="card" href="https://atrdbms.github.io/civil-works/" target="_blank" data-short="Civil Works" rel="noopener">
+        <div class="card-top">
+          <div class="ico cw" aria-hidden="true">
+            <!-- Icon: stone check-dam wall with water, a builder's hard hat and a location pin -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <path d="M4 60c6-3 10-3 16 0s10 3 16 0 10-3 16 0 10 3 16 0" stroke="#7FC8EC" stroke-width="2.6" stroke-linecap="round"/>
+              <g fill="#fff" stroke="#34404D" stroke-width="1.6">
+                <rect x="8" y="42" width="14" height="9" rx="1.5"/><rect x="22" y="42" width="14" height="9" rx="1.5"/><rect x="36" y="42" width="14" height="9" rx="1.5"/><rect x="50" y="42" width="14" height="9" rx="1.5"/>
+                <rect x="15" y="33" width="14" height="9" rx="1.5"/><rect x="29" y="33" width="14" height="9" rx="1.5"/><rect x="43" y="33" width="14" height="9" rx="1.5"/>
+              </g>
+              <path d="M18 26a14 14 0 0 1 28 0z" fill="#DBB127"/>
+              <path d="M32 12v14" stroke="#B8901A" stroke-width="2.4"/>
+              <rect x="14" y="25" width="36" height="5" rx="2.5" fill="#DBB127" stroke="#B8901A" stroke-width="1.2"/>
+              <path d="M58 6c-4.4 0-8 3.4-8 7.6 0 5.4 8 12.4 8 12.4s8-7 8-12.4C66 9.4 62.4 6 58 6z" fill="#E2453C"/>
+              <circle cx="58" cy="13.5" r="3" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Infrastructure Database</div>
+            <h4>Forest Civil Works</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Logs civil works and structures across the reserve with location, photos and boundary files, with a satellite map, works list and CSV / PDF reports.
+          <ul class="feat">
+            <li>Dashboard</li><li>Add record</li><li>Satellite map</li><li>Works &amp; photos</li><li>Reports</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/civil-works</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -710,7 +748,7 @@
     </div>
     <h3>About ATR DBMS</h3>
     <div class="about-grid">
-      <div class="pill"><h5>Centralised access</h5><p>All seven monitoring databases of the reserve are reached from this single dashboard.</p></div>
+      <div class="pill"><h5>Centralised access</h5><p>All eight monitoring databases of the reserve are reached from this single dashboard.</p></div>
       <div class="pill"><h5>Field to report</h5><p>Data collected by frontline staff turns into maps, summaries and printable reports.</p></div>
       <div class="pill"><h5>Tiger conservation</h5><p>Supports protection, population monitoring and habitat management of Amrabad Tiger Reserve.</p></div>
     </div>

@@ -9,6 +9,7 @@ Dashboard linking the ATR monitoring systems:
 - [Forest Fire Management System](https://atrdbms.github.io/forest-fire/#reports)
 - [Tiger Conservation Foundation (TCF)](https://atrdbms.github.io/tcf-atr/)
 - [RoFR – Recognition of Forest Rights](https://atrdbms.github.io/atr-rofr/)
+- [Forest Civil Works](https://atrdbms.github.io/civil-works/)
 
 Live site: https://atrdbms.github.io/atr-dbms/
 
