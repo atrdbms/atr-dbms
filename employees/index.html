@@ -157,7 +157,7 @@ const CHART_COLOR = '#237a45';
    API_URL: paste the Apps Script "Web app" URL (ends with /exec).
    The website (GitHub Pages) reads and writes the Google Sheet through it.
    ================================================================ */
-const API_URL = '';
+const API_URL = 'https://script.google.com/macros/s/AKfycby8YAvoszo-Txki_j2HECOnkXXS2OMLpCb5gTfSlklTheg0Y-5zPxi5pduXX4OPjJS8Eg/exec';
 
 function passKey(){ try{ return localStorage.getItem('atr_emp_key')||''; }catch(e){ return ''; } }
 async function api(fn, ...args){
