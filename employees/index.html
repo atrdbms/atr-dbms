@@ -258,6 +258,9 @@ function mLink(r){
   return M.byKey.get(n+'|'+abbr(r['Designation'])) || null;
 }
 function catAbbrs(){ return new Set(catMaster().map(r=>abbr(r['Designation']))); }
+/* M-STrIPES spells some places differently ("Nagarjuna Sagar", "Kambala Pally"): compare without spaces/case. */
+const placeKey=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+function masterPlace(level,v){ const k=placeKey(v); return uniq(S.data.master.map(r=>r[level])).find(x=>placeKey(x)===k) || v; }
 function fmtDate(iso){ if(!iso) return ''; const [y,m,d]=iso.split('-'); return `${d}-${m}-${y}`; }
 
 function categories(){
@@ -433,7 +436,7 @@ function mstripesReport(rows){
   const used=new Set(catEmployees().map(mLink).filter(Boolean));
   const ab=catAbbrs();
   const missing=M.list.filter(o=>!used.has(o) && ab.has(abbr(o.desig))
-      && (!S.filters['Division']||o.division===S.filters['Division']) && (!S.filters['Range']||o.range===S.filters['Range']))
+      && (!S.filters['Division']||placeKey(o.division)===placeKey(S.filters['Division'])) && (!S.filters['Range']||placeKey(o.range)===placeKey(S.filters['Range'])))
     .sort((a,b)=>a.division.localeCompare(b.division)||a.range.localeCompare(b.range)||a.name.localeCompare(b.name));
   const km=linked.reduce((s,x)=>s+x[1].km,0), days=linked.reduce((s,x)=>s+x[1].days,0), obs=linked.reduce((s,x)=>s+x[1].obs,0);
   return `${head}
@@ -457,7 +460,7 @@ function mstripesReport(rows){
 function desigFromAbbr(a){ return uniq(catMaster().map(r=>r['Designation'])).find(d=>abbr(d)===abbr(a)) || ''; }
 function addFromMstripes(i){
   const o=M.list[i]; if(!o) return;
-  S.prefill={ 'Name':o.name, 'Designation':desigFromAbbr(o.desig), 'Range':o.range, 'Division':o.division };
+  S.prefill={ 'Name':o.name, 'Designation':desigFromAbbr(o.desig), 'Range':masterPlace('Range',o.range), 'Division':masterPlace('Division',o.division) };
   S.editing=null; S.tab='form'; render();
 }
 
@@ -622,7 +625,7 @@ function fillFromMstripes(name){
   const cur={}; document.querySelectorAll('#levels select').forEach(s=>cur[s.dataset.level]=s.value);
   if(cur['Designation']) return;   // keep a designation the user already picked
   const d=desigFromAbbr(o.desig); if(!d) return;
-  cascade(null,{ 'Designation':d, 'Division':o.division, 'Range':o.range },true);
+  cascade(null,{ 'Designation':d, 'Division':masterPlace('Division',o.division), 'Range':masterPlace('Range',o.range) },true);
   toast(`Filled from M-STrIPES: ${o.desig}, ${o.range}`);
 }
 function resizePhoto(file){
