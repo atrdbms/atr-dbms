@@ -38,40 +38,29 @@
   .title h1{font-family:Merriweather,Georgia,serif;font-weight:900;color:var(--forest);font-size:clamp(1.25rem,2.6vw,2rem);line-height:1.2;margin:4px 0}
   .title .sub{color:var(--gold-dk);font-weight:700;letter-spacing:.06em;font-size:clamp(.8rem,1.4vw,1rem)}
 
-  /* Hero */
-  .hero{position:relative;overflow:hidden;color:#fff;
-    background:
-      radial-gradient(1200px 400px at 85% -10%,rgba(219,177,39,.35),transparent 60%),
-      linear-gradient(135deg,#0F2D1F 0%,#163D2A 45%,#1F5A3A 100%)}
-  .hero::before{content:"";position:absolute;inset:0;opacity:.09;pointer-events:none;
-    background:repeating-linear-gradient(115deg,transparent 0 38px,#000 38px 52px,transparent 52px 96px)}
-  .hero .wrap{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;padding:52px 0 92px}
+  /* Eyebrow label (About page) */
   .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(219,177,39,.18);border:1px solid rgba(219,177,39,.5);color:var(--gold-lt);padding:5px 12px;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-  .hero h2{font-family:Merriweather,Georgia,serif;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.2;margin:16px 0 12px}
-  .hero h2 em{font-style:normal;color:var(--gold)}
-  .hero p{color:#D5E3DA;max-width:58ch}
-  .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 18px;backdrop-filter:blur(4px)}
-  .stat .k{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#B9CDBF}
-  .stat .v{font-family:Merriweather,Georgia,serif;font-size:1.25rem;color:var(--gold);margin-top:2px}
-  .clock{grid-column:1/-1}
-  .clock .v{color:#fff;font-family:Inter,sans-serif;font-weight:600;font-size:1.05rem}
 
-  /* Modules */
+  /* Modules: icon tiles */
   main{flex:1}
-  .modules{margin-top:-58px;position:relative;z-index:2}
-  .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;color:#fff}
-  .section-head h3{font-family:Merriweather,Georgia,serif;font-size:1.15rem}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  @media (min-width:1101px){.grid > .card:last-child:nth-child(3n+1){grid-column:1/-1}}
-  @media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:760px){.grid{grid-template-columns:1fr}}
-  .card{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;overflow:hidden;border:1px solid #E7E1D0;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
-  .card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(22,61,42,.22);border-color:var(--gold);outline:none}
-  .card-top{display:flex;gap:18px;align-items:center;padding:24px 24px 18px;background:linear-gradient(180deg,#FBF6E6,#fff)}
-  .card .ico{flex:none;width:96px;height:96px;border-radius:22px;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.12);transition:transform .3s}
-  .card:hover .ico{transform:rotate(-4deg) scale(1.05)}
-  .ico svg{width:72px;height:72px}
+  .modules{padding:28px 0 48px}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #E5DCC2}
+  .section-head h3{font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.3rem;position:relative}
+  .section-head h3::after{content:"";position:absolute;left:0;bottom:-12px;width:64px;height:4px;border-radius:2px;background:var(--gold)}
+  .section-head .today{font-size:.85rem;color:var(--muted);font-weight:500}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+  @media (max-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:12px}}
+  .tile{position:relative;display:flex;flex-direction:column;background:var(--card);border-radius:16px;overflow:hidden;text-decoration:none;cursor:pointer;border:2px solid #E7E1D0;box-shadow:0 6px 18px rgba(22,61,42,.10);transition:transform .2s ease,box-shadow .2s ease,border-color .2s}
+  .tile:hover,.tile:focus-visible{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 16px 34px rgba(22,61,42,.22);outline:none}
+  .tile:active{transform:scale(.97)}
+  .tile .ico{position:relative;display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden}
+  .tile .ico::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 10%,rgba(255,255,255,.22),transparent 55%);pointer-events:none}
+  .tile .ico svg{width:58%;height:auto;max-height:78%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));transition:transform .3s}
+  .tile:hover .ico svg{transform:scale(1.08)}
+  .tile-name{display:flex;align-items:center;justify-content:center;min-height:52px;padding:8px 10px;background:var(--forest);color:#fff;font-weight:700;font-size:1rem;text-align:center;line-height:1.2;border-top:3px solid var(--gold);transition:background .2s}
+  .tile:hover .tile-name{background:var(--forest-2);color:var(--gold-lt)}
+  .tile .lk{position:absolute;top:8px;right:8px;width:28px;height:28px;display:grid;place-items:center;font-size:.85rem;background:#FFF3CC;border:1px solid #F0D27A;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.2)}
   .ico.ms{background:linear-gradient(145deg,#1F5A3A,#0F2D1F)}
   .ico.wg{background:linear-gradient(145deg,#2B8FC4,#145A85)}
   .ico.tcf{background:linear-gradient(145deg,#C8642A,#7A2E0E)}
@@ -81,17 +70,6 @@
   .ico.cw{background:linear-gradient(145deg,#7A8796,#34404D)}
   .ico.rofr{background:linear-gradient(145deg,#2E9C86,#125246)}
   .ico.emp{background:linear-gradient(145deg,#5B5FC7,#2A2C78)}
-  .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
-  .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
-  .card-body{padding:0 24px 8px;color:var(--muted);font-size:.95rem}
-  .feat{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
-  .feat li{font-size:.78rem;font-weight:600;color:var(--forest-2);background:#EEF5F0;border:1px solid #D3E6DA;padding:4px 10px;border-radius:999px}
-  .card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-top:1px dashed #E5DCC2}
-  .url{font-size:.78rem;color:#8A968F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .btn{flex:none;display:inline-flex;align-items:center;gap:8px;background:var(--forest);color:#fff;font-weight:600;font-size:.9rem;padding:10px 16px;border-radius:10px;transition:background .2s}
-  .card:hover .btn{background:var(--gold-dk)}
-  .btn svg{width:16px;height:16px;transition:transform .2s}
-  .card:hover .btn svg{transform:translateX(3px)}
 
   /* About */
   .about{padding:48px 0 56px}
@@ -130,25 +108,10 @@
   .box .err{color:#C0392B;font-size:.85rem;min-height:1.2em;margin-top:8px}
   .box .cancel{background:transparent;color:var(--muted);margin-top:4px;font-weight:500}
   .box .cancel:hover{background:#F1EEE4}
-  .lock-badge{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;font-weight:700;color:#8A5A00;background:#FFF3CC;border:1px solid #F0D27A;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
-  .card{cursor:pointer}
   .logout{background:none;border:1px solid rgba(255,255,255,.35);color:#E8EFE9;border-radius:6px;padding:1px 10px;font:inherit;font-size:.78rem;cursor:pointer;margin-left:10px}
   .logout:hover{border-color:var(--gold);color:var(--gold)}
 
 
-  /* Shortcut row */
-  .shortcuts{background:#fff;border-bottom:1px solid #E7E1D0}
-  .shortcuts .wrap{padding:14px 0}
-  .sc{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;border-radius:14px;text-decoration:none;color:var(--forest);font-weight:600;font-size:.86rem;text-align:center;line-height:1.2;transition:background .2s,transform .2s}
-  .sc:hover,.sc:focus-visible{background:#FBF6E6;transform:translateY(-3px);outline:none}
-  .sc .ico{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.14)}
-  .sc .ico svg{width:44px;height:44px}
-  .sc .lk{position:absolute;top:6px;right:calc(50% - 40px);font-size:.7rem;background:#FFF3CC;border:1px solid #F0D27A;border-radius:999px;width:20px;height:20px;display:grid;place-items:center}
-  @media (max-width:760px){.sc-grid{grid-template-columns:repeat(4,1fr)}}
-
-  @media (max-width:860px){
-    .hero .wrap{grid-template-columns:1fr;padding:36px 0 84px}
-  }
   /* Main menu: top bar on desktop, bottom tab bar on phones */
   .menu{position:sticky;top:0;z-index:20;background:var(--forest);box-shadow:0 2px 10px rgba(0,0,0,.15)}
   .menu .wrap{display:flex;gap:6px}
@@ -156,9 +119,6 @@
   .menu a svg{width:20px;height:20px}
   .menu a:hover{color:#fff}
   .menu a.active{color:var(--gold);border-bottom-color:var(--gold)}
-  .sc-head{display:none}
-  .sc-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
-  .shortcuts .wrap{display:block}
   /* About */
   .about-hero{color:#fff;background:radial-gradient(900px 300px at 85% -10%,rgba(219,177,39,.35),transparent 60%),linear-gradient(135deg,#0F2D1F,#1F5A3A);padding:40px 0 44px}
   .about-hero h2{font-family:Merriweather,Georgia,serif;font-size:clamp(1.5rem,3.4vw,2.4rem);margin:14px 0 8px}
@@ -241,49 +201,21 @@
     .logout{white-space:nowrap;flex:none}
     .gov-strip .wrap > span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
     .gov-strip .wrap > span:last-child{flex:none}
-    .hero-stats .stat:not(.clock){display:none}
-    .hero-stats{grid-template-columns:1fr}
     /* header */
     header.brand .wrap{gap:10px;padding:10px 0}
     .logo{width:52px;height:52px}
     .title .dept{font-size:.62rem;letter-spacing:.05em}
     .title h1{font-size:1.2rem;margin:2px 0}
     .title .sub{font-size:.68rem;letter-spacing:.03em}
-    /* shortcuts: 3 x 2 grid of big tap targets */
-    .shortcuts .wrap{padding:14px 0}
-    .sc{min-height:104px;padding:12px 4px 10px;font-size:.88rem;background:#FAF8F1;border:1px solid #EEE7D3}
-    .sc:active{transform:scale(.96);background:#F6EDCC}
-    .sc .ico{width:60px;height:60px;border-radius:16px}
-    .sc .ico svg{width:44px;height:44px}
-    .sc .lk{right:8px;top:8px}
-    /* hero: short, date only */
-    .hero .wrap{padding:22px 0 70px;gap:16px}
-    .hero h2{font-size:1.5rem;margin:12px 0 8px}
-    .hero .lead{font-size:.95rem}
-    .eyebrow{font-size:.7rem}
-    .hero-stats{grid-template-columns:1fr 1fr;gap:10px}
-    .hero-stats .stat{padding:12px 14px}
-    .stat .v{font-size:1.05rem}
-    .clock .v{font-size:.95rem}
-    .modules{margin-top:-48px}
-    .section-head h3{font-size:1.05rem}
-    /* cards: compact row header, full-width big button */
-    .grid{grid-template-columns:1fr;gap:16px}
-    .card-top{flex-direction:row;text-align:left;gap:14px;padding:16px 16px 12px}
-    .card .ico{width:68px;height:68px;border-radius:18px}
-    .card .ico svg{width:50px;height:50px}
-    .card h4{font-size:1.12rem}
-    .card .tag{font-size:.72rem}
-    .lock-badge{margin-left:0;margin-top:4px}
-    .card-body{padding:0 16px 4px;text-align:left;font-size:.95rem}
-    .feat{justify-content:flex-start;margin:12px 0 4px}
-    .feat li{font-size:.78rem;padding:5px 10px}
-    .card-foot{padding:12px 16px 16px;border-top:0}
-    .card-foot .url{display:none}
-    .btn{width:100%;justify-content:center;min-height:52px;font-size:1rem;border-radius:12px}
-    .card:hover{transform:none}
-    .card:active{transform:scale(.985)}
     /* about + footer */
+    .modules{padding:18px 0 28px}
+    .section-head h3{font-size:1.08rem}
+    .section-head .today{font-size:.75rem}
+    .tile{border-radius:14px;border-width:1.5px}
+    .tile .ico{aspect-ratio:1/1}
+    .tile .ico svg{width:66%}
+    .tile-name{min-height:44px;font-size:.8rem;padding:6px 4px;border-top-width:2px}
+    .tile .lk{width:22px;height:22px;font-size:.7rem;top:5px;right:5px}
     .about{padding:32px 0 36px}
     .about-grid{gap:12px}
     footer .wrap{flex-direction:column;text-align:center;padding:18px 0 calc(18px + env(safe-area-inset-bottom))}
@@ -298,8 +230,6 @@
     .menu a{flex:1;flex-direction:column;gap:3px;padding:9px 4px 8px;font-size:.75rem;border-bottom:0;border-top:3px solid transparent;min-height:64px;justify-content:center}
     .menu a svg{width:24px;height:24px}
     .menu a.active{border-top-color:var(--gold);border-bottom-color:transparent;background:rgba(255,255,255,.06)}
-    .sc-head{display:block;font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.05rem;margin:2px 2px 10px}
-    .sc-grid{grid-template-columns:repeat(4,1fr);gap:6px}
     .about-hero{padding:24px 0 26px}
     .about-text p{font-size:.98rem}
     .facts{gap:10px;margin:16px 0 28px}
@@ -323,10 +253,8 @@
   }
   @media (max-width:360px){
     .title h1{font-size:1.05rem}
+    .tile-name{font-size:.74rem}
     .logo{width:44px;height:44px}
-    .sc{font-size:.8rem;min-height:96px}
-    .sc .ico{width:52px;height:52px}.sc .ico svg{width:38px;height:38px}
-    .hero-stats .stat:not(.clock){display:none}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -391,377 +319,183 @@
 </nav>
 
 <div class="view" id="view-modules">
-<nav class="shortcuts" aria-label="Module shortcuts">
-  <div class="wrap">
-    <div class="sc-head">Modules</div>
-    <div class="sc-grid" id="shortcuts"></div>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <span class="eyebrow">● Conserving Mother Nature</span>
-      <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records, forest rights (RoFR) records, forest civil works and the employee database of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">9 Modules</div></div>
-      <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Protection</div></div>
-      <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
-    </div>
-  </div>
-</section>
-
 <main>
   <section class="modules wrap" id="modules">
-    <div class="section-head"><h3>Monitoring Systems</h3></div>
+    <div class="section-head"><h3>ATR DBMS Modules</h3><span class="today" id="today"></span></div>
     <div class="grid">
-
-      <!-- M-STrIPES -->
-      <a class="card" href="https://atrdbms.github.io/amrabad-mstripes/" target="_blank" data-short="M-STrIPES" rel="noopener">
-        <div class="card-top">
-          <div class="ico ms" aria-hidden="true">
-            <!-- Icon: patrol route with GPS pin and tiger pugmark -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <path d="M10 58c8-2 10-12 18-13s10 8 18 5 6-15 14-18" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="1 5.5"/>
-              <circle cx="10" cy="58" r="3.2" fill="#DBB127"/>
-              <path d="M51 6c-7.2 0-12.5 5.4-12.5 12.2 0 8.6 12.5 21 12.5 21s12.5-12.4 12.5-21C63.5 11.4 58.2 6 51 6z" fill="#fff"/>
-              <g fill="#1F5A3A">
-                <ellipse cx="51" cy="21.5" rx="4.6" ry="3.9"/>
-                <ellipse cx="45.6" cy="15.4" rx="1.6" ry="2.1" transform="rotate(-20 45.6 15.4)"/>
-                <ellipse cx="49.3" cy="12.6" rx="1.6" ry="2.2"/>
-                <ellipse cx="53.4" cy="12.7" rx="1.6" ry="2.2"/>
-                <ellipse cx="56.8" cy="15.6" rx="1.6" ry="2.1" transform="rotate(20 56.8 15.6)"/>
-              </g>
-              <g fill="#fff" opacity=".92">
-                <ellipse cx="23" cy="34" rx="3.6" ry="3"/>
-                <circle cx="19" cy="29.6" r="1.3"/><circle cx="22" cy="27.6" r="1.3"/><circle cx="25.2" cy="27.8" r="1.3"/><circle cx="27.8" cy="30" r="1.3"/>
-              </g>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Field Patrol Database</div>
-            <h4>M-STrIPES Monitoring System</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Patrol effort and wildlife-sign monitoring from M-STrIPES records, with officer-wise and beat-wise reports, a sign map and printable reports.
-          <ul class="feat">
-            <li>Patrol effort</li><li>Wildlife signs</li><li>Sign map &amp; KML</li><li>Officer reports</li><li>PDF / Excel</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/amrabad-mstripes</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/amrabad-mstripes/" target="_blank" data-short="M-STrIPES" title="M-STrIPES Monitoring System" aria-label="Open M-STrIPES Monitoring System" rel="noopener">
+        <span class="ico ms" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <path d="M10 58c8-2 10-12 18-13s10 8 18 5 6-15 14-18" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="1 5.5"/>
+                <circle cx="10" cy="58" r="3.2" fill="#DBB127"/>
+                <path d="M51 6c-7.2 0-12.5 5.4-12.5 12.2 0 8.6 12.5 21 12.5 21s12.5-12.4 12.5-21C63.5 11.4 58.2 6 51 6z" fill="#fff"/>
+                <g fill="#1F5A3A">
+                  <ellipse cx="51" cy="21.5" rx="4.6" ry="3.9"/>
+                  <ellipse cx="45.6" cy="15.4" rx="1.6" ry="2.1" transform="rotate(-20 45.6 15.4)"/>
+                  <ellipse cx="49.3" cy="12.6" rx="1.6" ry="2.2"/>
+                  <ellipse cx="53.4" cy="12.7" rx="1.6" ry="2.2"/>
+                  <ellipse cx="56.8" cy="15.6" rx="1.6" ry="2.1" transform="rotate(20 56.8 15.6)"/>
+                </g>
+                <g fill="#fff" opacity=".92">
+                  <ellipse cx="23" cy="34" rx="3.6" ry="3"/>
+                  <circle cx="19" cy="29.6" r="1.3"/><circle cx="22" cy="27.6" r="1.3"/><circle cx="25.2" cy="27.8" r="1.3"/><circle cx="27.8" cy="30" r="1.3"/>
+                </g>
+              </svg>
+        </span>
+        <span class="tile-name">M-STrIPES</span>
       </a>
 
-      <!-- Tiger Monitoring -->
-      <a class="card locked" href="#" role="button" data-name="Tiger Monitoring" data-short="Tiger Monitoring" data-key="atrTiger" data-hash="2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe" data-url="https://atrdbms.github.io/amrabad-tigermonitoring/">
-        <div class="card-top">
-          <div class="ico tm" aria-hidden="true">
-            <!-- Icon: camera trap strapped to tree with tiger stripes in the lens -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <rect x="6" y="6" width="9" height="60" rx="3" fill="#7A5A12" opacity=".55"/>
-              <rect x="4" y="20" width="13" height="4" rx="2" fill="#163D2A"/>
-              <rect x="4" y="48" width="13" height="4" rx="2" fill="#163D2A"/>
-              <rect x="15" y="14" width="46" height="44" rx="9" fill="#163D2A"/>
-              <rect x="20" y="19" width="12" height="7" rx="2" fill="#2E8B57"/>
-              <circle cx="54" cy="22" r="2.4" fill="#E2453C"/>
-              <circle cx="40" cy="38" r="14" fill="#0D2318" stroke="#DBB127" stroke-width="3"/>
-              <circle cx="40" cy="38" r="9.5" fill="#E89A2C"/>
-              <g stroke="#1B1B1B" stroke-width="2" stroke-linecap="round">
-                <path d="M33 33.5c2.6 1 4 1 6 .2"/>
-                <path d="M46.8 33.5c-2.6 1-4 1-6 .2"/>
-                <path d="M31.4 39.4c2.4.4 3.8 1.4 4.6 3"/>
-                <path d="M48.6 39.4c-2.4.4-3.8 1.4-4.6 3"/>
-              </g>
-              <ellipse cx="40" cy="41.5" rx="2.2" ry="1.6" fill="#1B1B1B"/>
-              <circle cx="36" cy="37" r="1.3" fill="#fff"/>
-              <circle cx="44" cy="37" r="1.3" fill="#fff"/>
-              <path d="M22 53h8" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Camera Trap &amp; Field Data</div>
-            <h4>Tiger Monitoring System <span class="lock-badge">🔒 Restricted</span></h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Camera-trap and field tiger monitoring linked to the live ATR sheet, with individual tiger profiles, a GIS map and abstract and pivot reports.
-          <ul class="feat">
-            <li>Live database</li><li>Tiger profiles</li><li>GIS map</li><li>Abstract reports</li><li>CSV / Excel</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">Separate password required</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile locked" href="#" role="button" data-name="Tiger Monitoring" data-short="Tiger Monitoring" title="Tiger Monitoring System" aria-label="Open Tiger Monitoring System" data-key="atrTiger" data-hash="2c8fbd9778a55a596e47be79a00270df5bf5c4359226603f350edad40a3c6cfe" data-url="https://atrdbms.github.io/amrabad-tigermonitoring/">
+        <span class="ico tm" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <rect x="6" y="6" width="9" height="60" rx="3" fill="#7A5A12" opacity=".55"/>
+                <rect x="4" y="20" width="13" height="4" rx="2" fill="#163D2A"/>
+                <rect x="4" y="48" width="13" height="4" rx="2" fill="#163D2A"/>
+                <rect x="15" y="14" width="46" height="44" rx="9" fill="#163D2A"/>
+                <rect x="20" y="19" width="12" height="7" rx="2" fill="#2E8B57"/>
+                <circle cx="54" cy="22" r="2.4" fill="#E2453C"/>
+                <circle cx="40" cy="38" r="14" fill="#0D2318" stroke="#DBB127" stroke-width="3"/>
+                <circle cx="40" cy="38" r="9.5" fill="#E89A2C"/>
+                <g stroke="#1B1B1B" stroke-width="2" stroke-linecap="round">
+                  <path d="M33 33.5c2.6 1 4 1 6 .2"/>
+                  <path d="M46.8 33.5c-2.6 1-4 1-6 .2"/>
+                  <path d="M31.4 39.4c2.4.4 3.8 1.4 4.6 3"/>
+                  <path d="M48.6 39.4c-2.4.4-3.8 1.4-4.6 3"/>
+                </g>
+                <ellipse cx="40" cy="41.5" rx="2.2" ry="1.6" fill="#1B1B1B"/>
+                <circle cx="36" cy="37" r="1.3" fill="#fff"/>
+                <circle cx="44" cy="37" r="1.3" fill="#fff"/>
+                <path d="M22 53h8" stroke="#2E8B57" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+        </span>
+        <span class="lk" title="Separate password required">🔒</span>
+        <span class="tile-name">Tiger Monitoring</span>
       </a>
 
-      <!-- Water Grid -->
-      <a class="card" href="https://atrdbms.github.io/Watergrid/" target="_blank" data-short="Water Grid" rel="noopener">
-        <div class="card-top">
-          <div class="ico wg" aria-hidden="true">
-            <!-- Icon: water drop over a grid of water points linked by pipelines -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <g stroke="#9ED8F2" stroke-width="2.4" stroke-linecap="round">
-                <path d="M10 58h52M10 58V46M36 58V46M62 58V46"/>
-              </g>
-              <g fill="#DBB127"><circle cx="10" cy="46" r="3.6"/><circle cx="36" cy="46" r="3.6"/><circle cx="62" cy="46" r="3.6"/><circle cx="10" cy="58" r="2.6"/><circle cx="36" cy="58" r="2.6"/><circle cx="62" cy="58" r="2.6"/></g>
-              <path d="M36 6C36 6 22 21.5 22 30.5a14 14 0 0 0 28 0C50 21.5 36 6 36 6z" fill="#fff"/>
-              <path d="M36 14c0 0-8.6 10-8.6 16.2a8.6 8.6 0 0 0 17.2 0C44.6 24 36 14 36 14z" fill="#2B8FC4"/>
-              <path d="M31.5 31.5c0 2.6 1.8 4.6 4.3 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <path d="M18 38c3 2 5.5 2 8.5 0M45.5 38c3 2 5.5 2 8.5 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Water Resources Database</div>
-            <h4>Water Grid Management System</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Mapping and monitoring of water structures across the reserve, with photos, summary and detailed reports, and records from the live sheet.
-          <ul class="feat">
-            <li>Dashboard</li><li>Water map</li><li>Photos</li><li>Reports</li><li>Records</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/Watergrid</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/Watergrid/" target="_blank" data-short="Water Grid" title="Water Grid Management System" aria-label="Open Water Grid Management System" rel="noopener">
+        <span class="ico wg" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <g stroke="#9ED8F2" stroke-width="2.4" stroke-linecap="round">
+                  <path d="M10 58h52M10 58V46M36 58V46M62 58V46"/>
+                </g>
+                <g fill="#DBB127"><circle cx="10" cy="46" r="3.6"/><circle cx="36" cy="46" r="3.6"/><circle cx="62" cy="46" r="3.6"/><circle cx="10" cy="58" r="2.6"/><circle cx="36" cy="58" r="2.6"/><circle cx="62" cy="58" r="2.6"/></g>
+                <path d="M36 6C36 6 22 21.5 22 30.5a14 14 0 0 0 28 0C50 21.5 36 6 36 6z" fill="#fff"/>
+                <path d="M36 14c0 0-8.6 10-8.6 16.2a8.6 8.6 0 0 0 17.2 0C44.6 24 36 14 36 14z" fill="#2B8FC4"/>
+                <path d="M31.5 31.5c0 2.6 1.8 4.6 4.3 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 38c3 2 5.5 2 8.5 0M45.5 38c3 2 5.5 2 8.5 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+              </svg>
+        </span>
+        <span class="tile-name">Water Grid</span>
       </a>
 
-      <!-- Basecamp -->
-      <a class="card" href="https://atrdbms.github.io/amrabad-basecamp/" target="_blank" data-short="Basecamp" rel="noopener">
-        <div class="card-top">
-          <div class="ico bc" aria-hidden="true">
-            <!-- Icon: anti-poaching basecamp tent under a flag, with a photo report badge -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <path d="M4 60h56" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M32 10v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M32 10l10 3.5-10 3.5z" fill="#DBB127"/>
-              <path d="M32 18L8 60h48L32 18z" fill="#fff"/>
-              <path d="M32 18L22 60h20L32 18z" fill="#E7EFD9"/>
-              <path d="M32 34l-7 26h14l-7-26z" fill="#34481C"/>
-              <rect x="44" y="40" width="24" height="18" rx="4" fill="#163D2A" stroke="#DBB127" stroke-width="2.2"/>
-              <rect x="50" y="37" width="8" height="4" rx="1.5" fill="#DBB127"/>
-              <circle cx="56" cy="49" r="5" fill="#fff"/>
-              <circle cx="56" cy="49" r="2.6" fill="#6E8B3D"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Daily Picture Reports</div>
-            <h4>Basecamp Monitoring System</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Daily basecamp picture reports and staff attendance from the live sheet, with dashboards, a satellite map of basecamp locations and print, Excel and CSV exports.
-          <ul class="feat">
-            <li>Dashboard</li><li>GIS map</li><li>Basecamps</li><li>Reports</li><li>Records</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/amrabad-basecamp</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/amrabad-basecamp/" target="_blank" data-short="Basecamp" title="Basecamp Monitoring System" aria-label="Open Basecamp Monitoring System" rel="noopener">
+        <span class="ico bc" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <path d="M4 60h56" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M32 10v8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M32 10l10 3.5-10 3.5z" fill="#DBB127"/>
+                <path d="M32 18L8 60h48L32 18z" fill="#fff"/>
+                <path d="M32 18L22 60h20L32 18z" fill="#E7EFD9"/>
+                <path d="M32 34l-7 26h14l-7-26z" fill="#34481C"/>
+                <rect x="44" y="40" width="24" height="18" rx="4" fill="#163D2A" stroke="#DBB127" stroke-width="2.2"/>
+                <rect x="50" y="37" width="8" height="4" rx="1.5" fill="#DBB127"/>
+                <circle cx="56" cy="49" r="5" fill="#fff"/>
+                <circle cx="56" cy="49" r="2.6" fill="#6E8B3D"/>
+              </svg>
+        </span>
+        <span class="tile-name">Basecamp</span>
       </a>
 
-      <!-- Forest Fire -->
-      <a class="card" href="https://atrdbms.github.io/forest-fire/#reports" target="_blank" data-short="Forest Fire" rel="noopener">
-        <div class="card-top">
-          <div class="ico ff" aria-hidden="true">
-            <!-- Icon: flame over a forest tree line with a satellite alert ring -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="32" r="24" stroke="#FFD27A" stroke-width="2" stroke-dasharray="3 5" opacity=".8"/>
-              <path d="M36 8c2 9 13 13 13 26a13 13 0 0 1-26 0c0-6 3-10 6-13 0 5 2 8 5 9-1-8 0-15 2-22z" fill="#FFB238"/>
-              <path d="M36 26c1 5 7 7 7 13a7 7 0 0 1-14 0c0-3 1.6-5 3.2-6.6.4 2.6 1.4 4 2.8 4.6-.6-4.2 0-7.6 1-11z" fill="#FFF1C9"/>
-              <g fill="#163D2A">
-                <path d="M4 66l7-16 7 16z"/><path d="M14 66l8-19 8 19z"/>
-                <path d="M42 66l8-19 8 19z"/><path d="M54 66l7-16 7 16z"/>
-              </g>
-              <path d="M2 66h68" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Fire Incident Database</div>
-            <h4>Forest Fire Management System</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Tracks forest fire incidents across the reserve from the FFMIS sheet, with charts, satellite map layers, officer efficiency scores and reports.
-          <ul class="feat">
-            <li>Dashboard</li><li>Satellite map</li><li>Fire occurrences</li><li>Officers</li><li>Reports</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/forest-fire</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/forest-fire/#reports" target="_blank" data-short="Forest Fire" title="Forest Fire Management System" aria-label="Open Forest Fire Management System" rel="noopener">
+        <span class="ico ff" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="32" r="24" stroke="#FFD27A" stroke-width="2" stroke-dasharray="3 5" opacity=".8"/>
+                <path d="M36 8c2 9 13 13 13 26a13 13 0 0 1-26 0c0-6 3-10 6-13 0 5 2 8 5 9-1-8 0-15 2-22z" fill="#FFB238"/>
+                <path d="M36 26c1 5 7 7 7 13a7 7 0 0 1-14 0c0-3 1.6-5 3.2-6.6.4 2.6 1.4 4 2.8 4.6-.6-4.2 0-7.6 1-11z" fill="#FFF1C9"/>
+                <g fill="#163D2A">
+                  <path d="M4 66l7-16 7 16z"/><path d="M14 66l8-19 8 19z"/>
+                  <path d="M42 66l8-19 8 19z"/><path d="M54 66l7-16 7 16z"/>
+                </g>
+                <path d="M2 66h68" stroke="#DBB127" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+        </span>
+        <span class="tile-name">Forest Fire</span>
       </a>
 
-      <!-- Tiger Conservation Foundation -->
-      <a class="card locked" href="#" role="button" data-name="TCF" data-short="TCF" data-key="atrTcf" data-hash="de217cf981ee89ff12e8194eaafe22027f25749c97ec45b3e7b0364ed011ba57" data-url="https://atrdbms.github.io/tcf-atr/">
-        <div class="card-top">
-          <div class="ico tcf" aria-hidden="true">
-            <!-- Icon: conservation shield with tiger stripes over a ledger and rupee coin -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <rect x="8" y="34" width="34" height="30" rx="4" fill="#fff"/>
-              <g stroke="#C8642A" stroke-width="2.2" stroke-linecap="round"><path d="M14 43h22M14 50h22M14 57h14"/></g>
-              <path d="M44 6l20 7v14c0 13-8.6 21-20 25-11.4-4-20-12-20-25V13l20-7z" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
-              <g stroke="#1B1B1B" stroke-width="2.6" stroke-linecap="round">
-                <path d="M33 18c4 1.6 6 3.8 6.8 7"/><path d="M55 18c-4 1.6-6 3.8-6.8 7"/>
-                <path d="M32 30c3.6.4 6 2 7.4 4.6"/><path d="M56 30c-3.6.4-6 2-7.4 4.6"/>
-                <path d="M44 12v8"/>
-              </g>
-              <circle cx="50" cy="54" r="11" fill="#163D2A" stroke="#DBB127" stroke-width="2.6"/>
-              <path d="M45.5 48.5h9M45.5 52h9M47 48.5c5 0 5 7-1.5 7l6.5 5" stroke="#DBB127" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Finance Records</div>
-            <h4>Tiger Conservation Foundation (TCF) <span class="lock-badge">🔒 Restricted</span></h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Finance records of the TCF Scheme: annual plan of operations, receipts, expenditure against plan and cheques issued, with summary reports.
-          <ul class="feat">
-            <li>APO</li><li>Receipts</li><li>Expenditure</li><li>Cheques issued</li><li>Reports</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">Separate password required</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile locked" href="#" role="button" data-name="TCF" data-short="TCF Finance" title="Tiger Conservation Foundation (TCF)" aria-label="Open Tiger Conservation Foundation (TCF)" data-key="atrTcf" data-hash="de217cf981ee89ff12e8194eaafe22027f25749c97ec45b3e7b0364ed011ba57" data-url="https://atrdbms.github.io/tcf-atr/">
+        <span class="ico tcf" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <rect x="8" y="34" width="34" height="30" rx="4" fill="#fff"/>
+                <g stroke="#C8642A" stroke-width="2.2" stroke-linecap="round"><path d="M14 43h22M14 50h22M14 57h14"/></g>
+                <path d="M44 6l20 7v14c0 13-8.6 21-20 25-11.4-4-20-12-20-25V13l20-7z" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
+                <g stroke="#1B1B1B" stroke-width="2.6" stroke-linecap="round">
+                  <path d="M33 18c4 1.6 6 3.8 6.8 7"/><path d="M55 18c-4 1.6-6 3.8-6.8 7"/>
+                  <path d="M32 30c3.6.4 6 2 7.4 4.6"/><path d="M56 30c-3.6.4-6 2-7.4 4.6"/>
+                  <path d="M44 12v8"/>
+                </g>
+                <circle cx="50" cy="54" r="11" fill="#163D2A" stroke="#DBB127" stroke-width="2.6"/>
+                <path d="M45.5 48.5h9M45.5 52h9M47 48.5c5 0 5 7-1.5 7l6.5 5" stroke="#DBB127" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+        </span>
+        <span class="lk" title="Separate password required">🔒</span>
+        <span class="tile-name">TCF Finance</span>
       </a>
 
-      <!-- RoFR: Recognition of Forest Rights -->
-      <a class="card" href="https://atrdbms.github.io/atr-rofr/" target="_blank" data-short="RoFR" rel="noopener">
-        <div class="card-top">
-          <div class="ico rofr" aria-hidden="true">
-            <!-- Icon: title-deed document with a tree, over a homestead, with an approval seal -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <path d="M16 6h30l12 12v40a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z" fill="#fff"/>
-              <path d="M46 6v10a2 2 0 0 0 2 2h10" fill="#D8E9E4"/>
-              <circle cx="30" cy="22" r="8" fill="#2E8B57"/>
-              <path d="M30 28v8" stroke="#6B4A2B" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M18 44l8-6 8 6v8H18z" fill="#DBB127"/>
-              <path d="M24 52v-5h4v5" fill="#7A5A12"/>
-              <path d="M38 41h12M38 47h10" stroke="#9DB8AF" stroke-width="2.4" stroke-linecap="round"/>
-              <circle cx="52" cy="54" r="10" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
-              <path d="M47.5 54l3.2 3.2 6-6.4" stroke="#163D2A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Forest Rights Database</div>
-            <h4>RoFR – Recognition of Forest Rights</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Records claims and titles under the Forest Rights Act for villages in and around the reserve, covering individual and community forest rights.
-          <ul class="feat">
-            <li>Claims</li><li>Titles</li><li>Villages</li><li>Reports</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/atr-rofr</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/atr-rofr/" target="_blank" data-short="RoFR" title="RoFR – Recognition of Forest Rights" aria-label="Open RoFR – Recognition of Forest Rights" rel="noopener">
+        <span class="ico rofr" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <path d="M16 6h30l12 12v40a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z" fill="#fff"/>
+                <path d="M46 6v10a2 2 0 0 0 2 2h10" fill="#D8E9E4"/>
+                <circle cx="30" cy="22" r="8" fill="#2E8B57"/>
+                <path d="M30 28v8" stroke="#6B4A2B" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M18 44l8-6 8 6v8H18z" fill="#DBB127"/>
+                <path d="M24 52v-5h4v5" fill="#7A5A12"/>
+                <path d="M38 41h12M38 47h10" stroke="#9DB8AF" stroke-width="2.4" stroke-linecap="round"/>
+                <circle cx="52" cy="54" r="10" fill="#DBB127" stroke="#fff" stroke-width="2.4"/>
+                <path d="M47.5 54l3.2 3.2 6-6.4" stroke="#163D2A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+        </span>
+        <span class="tile-name">RoFR</span>
       </a>
 
-      <!-- Forest Civil Works -->
-      <a class="card" href="https://atrdbms.github.io/civil-works/" target="_blank" data-short="Civil Works" rel="noopener">
-        <div class="card-top">
-          <div class="ico cw" aria-hidden="true">
-            <!-- Icon: stone check-dam wall with water, a builder's hard hat and a location pin -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <path d="M4 60c6-3 10-3 16 0s10 3 16 0 10-3 16 0 10 3 16 0" stroke="#7FC8EC" stroke-width="2.6" stroke-linecap="round"/>
-              <g fill="#fff" stroke="#34404D" stroke-width="1.6">
-                <rect x="8" y="42" width="14" height="9" rx="1.5"/><rect x="22" y="42" width="14" height="9" rx="1.5"/><rect x="36" y="42" width="14" height="9" rx="1.5"/><rect x="50" y="42" width="14" height="9" rx="1.5"/>
-                <rect x="15" y="33" width="14" height="9" rx="1.5"/><rect x="29" y="33" width="14" height="9" rx="1.5"/><rect x="43" y="33" width="14" height="9" rx="1.5"/>
-              </g>
-              <path d="M18 26a14 14 0 0 1 28 0z" fill="#DBB127"/>
-              <path d="M32 12v14" stroke="#B8901A" stroke-width="2.4"/>
-              <rect x="14" y="25" width="36" height="5" rx="2.5" fill="#DBB127" stroke="#B8901A" stroke-width="1.2"/>
-              <path d="M58 6c-4.4 0-8 3.4-8 7.6 0 5.4 8 12.4 8 12.4s8-7 8-12.4C66 9.4 62.4 6 58 6z" fill="#E2453C"/>
-              <circle cx="58" cy="13.5" r="3" fill="#fff"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Infrastructure Database</div>
-            <h4>Forest Civil Works</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Logs civil works and structures across the reserve with location, photos and boundary files, with a satellite map, works list and CSV / PDF reports.
-          <ul class="feat">
-            <li>Dashboard</li><li>Add record</li><li>Satellite map</li><li>Works &amp; photos</li><li>Reports</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/civil-works</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/civil-works/" target="_blank" data-short="Civil Works" title="Forest Civil Works" aria-label="Open Forest Civil Works" rel="noopener">
+        <span class="ico cw" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <path d="M4 60c6-3 10-3 16 0s10 3 16 0 10-3 16 0 10 3 16 0" stroke="#7FC8EC" stroke-width="2.6" stroke-linecap="round"/>
+                <g fill="#fff" stroke="#34404D" stroke-width="1.6">
+                  <rect x="8" y="42" width="14" height="9" rx="1.5"/><rect x="22" y="42" width="14" height="9" rx="1.5"/><rect x="36" y="42" width="14" height="9" rx="1.5"/><rect x="50" y="42" width="14" height="9" rx="1.5"/>
+                  <rect x="15" y="33" width="14" height="9" rx="1.5"/><rect x="29" y="33" width="14" height="9" rx="1.5"/><rect x="43" y="33" width="14" height="9" rx="1.5"/>
+                </g>
+                <path d="M18 26a14 14 0 0 1 28 0z" fill="#DBB127"/>
+                <path d="M32 12v14" stroke="#B8901A" stroke-width="2.4"/>
+                <rect x="14" y="25" width="36" height="5" rx="2.5" fill="#DBB127" stroke="#B8901A" stroke-width="1.2"/>
+                <path d="M58 6c-4.4 0-8 3.4-8 7.6 0 5.4 8 12.4 8 12.4s8-7 8-12.4C66 9.4 62.4 6 58 6z" fill="#E2453C"/>
+                <circle cx="58" cy="13.5" r="3" fill="#fff"/>
+              </svg>
+        </span>
+        <span class="tile-name">Civil Works</span>
       </a>
 
-      <!-- ATR Employee Database -->
-      <a class="card" href="https://atrdbms.github.io/atr-employee/" target="_blank" data-short="Employees" rel="noopener">
-        <div class="card-top">
-          <div class="ico emp" aria-hidden="true">
-            <!-- Icon: staff ID card with photo, name lines and a forest badge -->
-            <svg viewBox="0 0 72 72" fill="none">
-              <rect x="7" y="16" width="58" height="42" rx="6" fill="#fff" stroke="#2A2C78" stroke-width="1.6"/>
-              <rect x="7" y="16" width="58" height="10" rx="6" fill="#DBB127"/>
-              <rect x="7" y="22" width="58" height="4" fill="#DBB127"/>
-              <rect x="29" y="9" width="14" height="11" rx="3" fill="#B8C1D6" stroke="#2A2C78" stroke-width="1.4"/>
-              <rect x="13" y="31" width="18" height="21" rx="3" fill="#E4E6F7"/>
-              <circle cx="22" cy="38.5" r="4.6" fill="#5B5FC7"/>
-              <path d="M14.5 52c.8-5.6 4-8.4 7.5-8.4s6.7 2.8 7.5 8.4z" fill="#5B5FC7"/>
-              <rect x="36" y="33" width="23" height="3.6" rx="1.8" fill="#2A2C78"/>
-              <rect x="36" y="40" width="18" height="3" rx="1.5" fill="#9AA0D8"/>
-              <rect x="36" y="46" width="14" height="3" rx="1.5" fill="#9AA0D8"/>
-              <path d="M58 44l-4.5 7h3l-2.5 4h8l-2.5-4h3z" fill="#2E8B57"/>
-            </svg>
-          </div>
-          <div>
-            <div class="tag">Staff Database</div>
-            <h4>ATR Employee Database</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          Staff records of Amrabad Tiger Reserve across Nagarkurnool and Nalgonda districts, loaded live from the employee data sheet with a refresh option.
-          <ul class="feat">
-            <li>Employee list</li><li>Staff details</li><li>Live sheet data</li><li>Refresh data</li>
-          </ul>
-        </div>
-        <div class="card-foot">
-          <span class="url">atrdbms.github.io/atr-employee</span>
-          <span class="btn">Open system
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </div>
+      <a class="card tile" href="https://atrdbms.github.io/atr-employee/" target="_blank" data-short="Employee Database" title="ATR Employee Database" aria-label="Open ATR Employee Database" rel="noopener">
+        <span class="ico emp" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+                <rect x="7" y="16" width="58" height="42" rx="6" fill="#fff" stroke="#2A2C78" stroke-width="1.6"/>
+                <rect x="7" y="16" width="58" height="10" rx="6" fill="#DBB127"/>
+                <rect x="7" y="22" width="58" height="4" fill="#DBB127"/>
+                <rect x="29" y="9" width="14" height="11" rx="3" fill="#B8C1D6" stroke="#2A2C78" stroke-width="1.4"/>
+                <rect x="13" y="31" width="18" height="21" rx="3" fill="#E4E6F7"/>
+                <circle cx="22" cy="38.5" r="4.6" fill="#5B5FC7"/>
+                <path d="M14.5 52c.8-5.6 4-8.4 7.5-8.4s6.7 2.8 7.5 8.4z" fill="#5B5FC7"/>
+                <rect x="36" y="33" width="23" height="3.6" rx="1.8" fill="#2A2C78"/>
+                <rect x="36" y="40" width="18" height="3" rx="1.5" fill="#9AA0D8"/>
+                <rect x="36" y="46" width="14" height="3" rx="1.5" fill="#9AA0D8"/>
+                <path d="M58 44l-4.5 7h3l-2.5 4h8l-2.5-4h3z" fill="#2E8B57"/>
+              </svg>
+        </span>
+        <span class="tile-name">Employee Database</span>
       </a>
-
     </div>
   </section>
-
 </main>
 </div>
 
@@ -787,7 +521,7 @@
     </div>
     <h3>About ATR DBMS</h3>
     <div class="about-grid">
-      <div class="pill"><h5>Centralised access</h5><p>All eight monitoring databases of the reserve are reached from this single dashboard.</p></div>
+      <div class="pill"><h5>Centralised access</h5><p>All nine monitoring databases of the reserve are reached from this single dashboard.</p></div>
       <div class="pill"><h5>Field to report</h5><p>Data collected by frontline staff turns into maps, summaries and printable reports.</p></div>
       <div class="pill"><h5>Tiger conservation</h5><p>Supports protection, population monitoring and habitat management of Amrabad Tiger Reserve.</p></div>
     </div>
@@ -862,17 +596,6 @@
   $('lockForm').addEventListener('submit',async e=>{e.preventDefault();if(!cur)return;
     if(await sha($('lockPw').value)===cur.hash){sessionStorage.setItem(cur.key,cur.hash);const u=cur.url;closeLock();window.open(u,'_blank','noopener');}
     else{$('lockErr').textContent='Incorrect password for the '+cur.name+' module.';$('lockPw').select();}});
-
-  // Shortcut row: icon + name for every module card; clicking behaves exactly like the card (same password rules).
-  document.querySelectorAll('.grid > .card').forEach(card=>{
-    const a=document.createElement('a');a.className='sc';a.href='#';
-    a.setAttribute('aria-label','Open '+card.dataset.short);
-    a.appendChild(card.querySelector('.ico').cloneNode(true));
-    if(card.classList.contains('locked')){const l=document.createElement('span');l.className='lk';l.textContent='🔒';l.title='Separate password required';a.appendChild(l);}
-    const n=document.createElement('span');n.textContent=card.dataset.short;a.appendChild(n);
-    a.addEventListener('click',e=>{e.preventDefault();card.click();});
-    $('shortcuts').appendChild(a);
-  });
 
   // ---- Menu: About / Modules / Photo Gallery ----
   const views=['about','modules','gallery'];
