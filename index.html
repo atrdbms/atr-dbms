@@ -80,6 +80,7 @@
   .ico.tm{background:linear-gradient(145deg,#E6BE3A,#B8901A)}
   .ico.cw{background:linear-gradient(145deg,#7A8796,#34404D)}
   .ico.rofr{background:linear-gradient(145deg,#2E9C86,#125246)}
+  .ico.emp{background:linear-gradient(145deg,#5B5FC7,#2A2C78)}
   .card h4{font-family:Merriweather,Georgia,serif;font-size:1.3rem;color:var(--forest);line-height:1.25}
   .card .tag{font-size:.82rem;color:var(--gold-dk);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
   .card-body{padding:0 24px 8px;color:var(--muted);font-size:.95rem}
@@ -402,10 +403,10 @@
     <div>
       <span class="eyebrow">● Conserving Mother Nature</span>
       <h2>One dashboard for every <em>monitoring database</em> of the reserve</h2>
-      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records, forest rights (RoFR) records and forest civil works of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
+      <p class="lead">Access the field patrol records, wildlife sign surveys, camera-trap data, tiger profiles, water structures, basecamp reports, forest fire records, TCF finance records, forest rights (RoFR) records, forest civil works and the employee database of Amrabad Tiger Reserve from a single place. Choose a system below to open it.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="k">Systems</div><div class="v">8 Modules</div></div>
+      <div class="stat"><div class="k">Systems</div><div class="v">9 Modules</div></div>
       <div class="stat"><div class="k">Focus</div><div class="v">Tiger, Habitat &amp; Protection</div></div>
       <div class="stat clock"><div class="k">Today</div><div class="v" id="today">—</div></div>
     </div>
@@ -714,6 +715,44 @@
         </div>
         <div class="card-foot">
           <span class="url">atrdbms.github.io/civil-works</span>
+          <span class="btn">Open system
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ATR Employee Database -->
+      <a class="card" href="https://atrdbms.github.io/atr-employee/" target="_blank" data-short="Employees" rel="noopener">
+        <div class="card-top">
+          <div class="ico emp" aria-hidden="true">
+            <!-- Icon: staff ID card with photo, name lines and a forest badge -->
+            <svg viewBox="0 0 72 72" fill="none">
+              <rect x="7" y="16" width="58" height="42" rx="6" fill="#fff" stroke="#2A2C78" stroke-width="1.6"/>
+              <rect x="7" y="16" width="58" height="10" rx="6" fill="#DBB127"/>
+              <rect x="7" y="22" width="58" height="4" fill="#DBB127"/>
+              <rect x="29" y="9" width="14" height="11" rx="3" fill="#B8C1D6" stroke="#2A2C78" stroke-width="1.4"/>
+              <rect x="13" y="31" width="18" height="21" rx="3" fill="#E4E6F7"/>
+              <circle cx="22" cy="38.5" r="4.6" fill="#5B5FC7"/>
+              <path d="M14.5 52c.8-5.6 4-8.4 7.5-8.4s6.7 2.8 7.5 8.4z" fill="#5B5FC7"/>
+              <rect x="36" y="33" width="23" height="3.6" rx="1.8" fill="#2A2C78"/>
+              <rect x="36" y="40" width="18" height="3" rx="1.5" fill="#9AA0D8"/>
+              <rect x="36" y="46" width="14" height="3" rx="1.5" fill="#9AA0D8"/>
+              <path d="M58 44l-4.5 7h3l-2.5 4h8l-2.5-4h3z" fill="#2E8B57"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tag">Staff Database</div>
+            <h4>ATR Employee Database</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          Staff records of Amrabad Tiger Reserve across Nagarkurnool and Nalgonda districts, loaded live from the employee data sheet with a refresh option.
+          <ul class="feat">
+            <li>Employee list</li><li>Staff details</li><li>Live sheet data</li><li>Refresh data</li>
+          </ul>
+        </div>
+        <div class="card-foot">
+          <span class="url">atrdbms.github.io/atr-employee</span>
           <span class="btn">Open system
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
