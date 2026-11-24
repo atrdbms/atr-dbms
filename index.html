@@ -129,7 +129,7 @@
   .fact{background:#fff;border-radius:14px;padding:16px;border-top:4px solid var(--gold);box-shadow:0 4px 14px rgba(0,0,0,.05)}
   .fact b{display:block;font-family:Merriweather,Georgia,serif;color:var(--forest);font-size:1.3rem}
   .fact span{font-size:.85rem;color:var(--muted)}
-/* My Location map */
+/* Geo Location map */
   body.map-mode{height:100vh;height:100dvh;overflow:hidden}
   body.map-mode header.brand,body.map-mode .ticker,body.map-mode footer{display:none}
   body.map-mode main,body.map-mode #view-map{flex:1;min-height:0}
@@ -145,7 +145,6 @@
   .gps-info.err .dot{background:#E2453C}
   .gps-head span{flex:1}
   .gps-head button{background:none;border:0;color:#fff;font-size:1rem;cursor:pointer;width:28px;height:28px}
-  .gps-info.min #gpsBody,.gps-info.min .gps-act{display:none}
   #gpsBody{padding:8px 12px 2px}
   .gps-act{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 12px 10px}
   .gps-act button{border:0;border-radius:9px;background:var(--forest);color:#fff;font:inherit;font-weight:600;padding:8px 14px;cursor:pointer;min-height:38px}
@@ -165,6 +164,44 @@
   .lg-b{border-top:3px solid #E0B000}
   .lg-c{border-top:2px dashed #777}
   .leaflet-control-layers-overlays label{margin:3px 0}
+  /* Geo Location: mode switch, Geo Tracker, KML Track */
+  .geo-modes{position:absolute;z-index:600;top:10px;left:50%;transform:translateX(-50%);display:flex;background:rgba(22,61,42,.94);border-radius:12px;padding:4px;gap:4px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .geo-modes button{border:0;background:transparent;color:#D5E3DA;font:inherit;font-weight:700;font-size:.85rem;padding:8px 12px;border-radius:9px;cursor:pointer;white-space:nowrap;min-height:38px}
+  .geo-modes button.on{background:var(--gold);color:var(--forest)}
+  .geo-p{display:none}
+  .gps-info[data-mode=loc] .p-loc,.gps-info[data-mode=nav] .p-nav,.gps-info[data-mode=trk] .p-trk{display:block}
+  .gps-info.min .geo-p{display:none!important}
+  .geo-p .in{display:flex;gap:6px;margin:6px 0}
+  .geo-p input[type=text]{flex:1;min-width:0;padding:9px 10px;border:1.5px solid #D8D2C0;border-radius:9px;font:inherit;font-size:16px}
+  .geo-p select{width:100%;padding:8px;border:1.5px solid #D8D2C0;border-radius:9px;font:inherit;margin:4px 0}
+  .geo-p .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+  .geo-p .row button,.geo-p .in button{border:0;border-radius:9px;background:var(--forest);color:#fff;font:inherit;font-weight:600;padding:8px 12px;cursor:pointer;min-height:38px}
+  .geo-p .row button:hover,.geo-p .in button:hover{background:var(--gold-dk)}
+  .geo-p .row button.alt{background:#EEF5F0;color:var(--forest);border:1px solid #D3E6DA}
+  .geo-p .row button.rec{background:#C0392B}
+  .geo-p .row button:disabled{opacity:.45;cursor:default}
+  .geo-p .note{font-size:.76rem;color:var(--muted);margin:4px 0 2px}
+  .p-nav,.p-trk{padding:8px 12px 10px}
+  .nav-dir{display:flex;align-items:center;gap:12px;margin:2px 0 4px}
+  .nav-arrow{flex:none;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff,#EEF5F0);border:3px solid var(--gold);display:grid;place-items:center;position:relative}
+  .nav-arrow svg{width:40px;height:40px;transition:transform .25s ease}
+  .nav-arrow .n{position:absolute;top:-2px;left:50%;transform:translateX(-50%);font-size:.6rem;font-weight:800;color:#C0392B}
+  .nav-dir b{display:block;font-size:1.3rem;color:var(--forest);line-height:1.15}
+  .nav-dir span{color:var(--muted);font-size:.82rem}
+  .nav-ok{color:#1E9B48!important;font-weight:700}
+  .trk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:2px 0 4px}
+  .trk-stats div{background:#F4F1E6;border-radius:9px;padding:6px 8px;text-align:center}
+  .trk-stats b{display:block;color:var(--forest);font-size:1.05rem}
+  .trk-stats span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .trk-state{font-weight:700;color:var(--muted)}
+  .trk-state.on{color:#C0392B}
+  .trk-state.on::before{content:"●";margin-right:5px;animation:blink 1s infinite}
+  @keyframes blink{50%{opacity:.2}}
+  .tgt i{display:block;width:26px;height:26px;border-radius:50% 50% 50% 0;background:#E2453C;border:3px solid #fff;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+  .me-dir{pointer-events:none}
+  .me-dir svg{width:56px;height:56px;transition:transform .25s ease}
+  body.picking #map{cursor:crosshair}
+
 
     /* Scrolling messages ticker (edit messages in assets/ticker.js) */
   .ticker{display:flex;align-items:stretch;background:#FFF8E1;border-bottom:1px solid #F0D27A;font-size:.92rem;overflow:hidden}
@@ -228,6 +265,9 @@
     .fact{padding:12px}
     .fact b{font-size:1.1rem}
     .gps-info{left:8px;bottom:22px;width:calc(100% - 16px);font-size:.84rem}
+    .geo-modes{left:8px;right:8px;transform:none;justify-content:space-between;top:8px}
+    .geo-modes button{flex:1;padding:8px 4px;font-size:.76rem}
+    #view-map .leaflet-top{top:56px}
     body.map-mode .gov-strip{position:relative;z-index:21}
     /* login + module password boxes */
     .gate,.modal{align-items:start;padding:max(24px,env(safe-area-inset-top)) 14px 24px;overflow-y:auto}
@@ -299,7 +339,7 @@
   <div class="wrap">
     <a href="#about" data-tab="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-11 4 7 3-4 5 8z"/><circle cx="17" cy="6" r="2"/></svg><span>About</span></a>
     <a href="#modules" data-tab="modules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Modules</span></a>
-    <a href="#map" data-tab="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span>My Location</span></a>
+    <a href="#map" data-tab="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Geo Location</span></a>
   </div>
 </nav>
 
@@ -516,10 +556,45 @@
 <div class="view" id="view-map" hidden>
   <div id="map" aria-label="Satellite map of Amrabad Tiger Reserve with beat and compartment boundaries"></div>
   <div class="map-msg" id="mapMsg">Loading satellite map…</div>
-  <div class="gps-info wait" id="gpsInfo" aria-live="polite">
-    <div class="gps-head"><i class="dot"></i><span>My live location</span><button type="button" id="gpsToggle" aria-label="Show or hide location details">▾</button></div>
-    <div id="gpsBody"><div class="mp-out">Open this tab to see where you are.</div></div>
-    <div class="gps-act"><button type="button" id="gpsLocate">📍 Locate me</button><label><input type="checkbox" id="gpsFollow" checked> Follow me</label></div>
+  <div class="geo-modes" role="tablist" aria-label="Geo Location options">
+    <button type="button" data-mode="loc" class="on">📍 My Location</button>
+    <button type="button" data-mode="nav">🧭 Geo Tracker</button>
+    <button type="button" data-mode="trk">〰 KML Track</button>
+  </div>
+  <div class="gps-info wait" id="gpsInfo" data-mode="loc" aria-live="polite">
+    <div class="gps-head"><i class="dot"></i><span id="geoTitle">My live location</span><button type="button" id="gpsToggle" aria-label="Show or hide details">▾</button></div>
+    <div class="geo-p p-loc">
+      <div id="gpsBody"><div class="mp-out">Open this tab to see where you are.</div></div>
+      <div class="gps-act"><button type="button" id="gpsLocate">📍 Locate me</button><label><input type="checkbox" id="gpsFollow" checked> Follow me</label></div>
+    </div>
+    <div class="geo-p p-nav">
+      <div class="nav-dir">
+        <div class="nav-arrow"><span class="n">N</span><svg id="navArrow" viewBox="0 0 40 40"><path d="M20 3l11 31-11-7-11 7z" fill="#C0392B" stroke="#7A1F14" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+        <div><b id="navDist">No target</b><span id="navBear">Enter a latitude-longitude point below</span></div>
+      </div>
+      <div class="in"><input type="text" id="navIn" inputmode="text" placeholder="Lat, Long  e.g. 16.3742, 78.8301" aria-label="Target latitude and longitude"><button type="button" id="navSet">Go</button></div>
+      <select id="navList" hidden aria-label="Points from file"></select>
+      <div class="row">
+        <button type="button" class="alt" id="navPick">👆 Tap on map</button>
+        <button type="button" class="alt" id="navLoad">📂 Upload file</button>
+        <button type="button" class="alt" id="navCompass">🧭 Compass</button>
+        <button type="button" class="alt" id="navClear">✕ Clear</button>
+      </div>
+      <input type="file" id="navFile" accept=".kml,.gpx,.csv,.txt,application/vnd.google-earth.kml+xml,text/csv,text/plain" hidden>
+      <div class="note" id="navNote">Upload a KML, GPX or CSV of points, type a point (decimal or 16°22'27"N 78°49'48"E), or tap on the map.</div>
+    </div>
+    <div class="geo-p p-trk">
+      <div class="trk-state" id="trkState">Not recording</div>
+      <div class="trk-stats"><div><b id="trkPts">0</b><span>Points</span></div><div><b id="trkDist">0 m</b><span>Distance</span></div><div><b id="trkTime">00:00</b><span>Time</span></div></div>
+      <div class="row">
+        <button type="button" class="rec" id="trkStart">● Start track</button>
+        <button type="button" id="trkStop" disabled>■ Stop</button>
+        <button type="button" class="alt" id="trkSave" disabled>⬇ Export KML</button>
+        <button type="button" class="alt" id="trkShare" hidden disabled>Share</button>
+        <button type="button" class="alt" id="trkClear" disabled>✕ Clear</button>
+      </div>
+      <div class="note">Keep this screen open while recording. The screen stays on and the track is kept even if the page reloads.</div>
+    </div>
   </div>
 </div>
 
@@ -565,7 +640,7 @@
     if(await sha($('lockPw').value)===cur.hash){sessionStorage.setItem(cur.key,cur.hash);const u=cur.url;closeLock();window.open(u,'_blank','noopener');}
     else{$('lockErr').textContent='Incorrect password for the '+cur.name+' module.';$('lockPw').select();}});
 
-  // ---- Menu: About / Modules / My Location ----
+  // ---- Menu: About / Modules / Geo Location ----
   const views=['about','modules','map'];
   function show(tab){
     if(!views.includes(tab)) tab='modules';
@@ -589,7 +664,7 @@
     $('ticker').addEventListener('click',()=>$('ticker').classList.toggle('paused')); // tap to pause on phones
   })();
 
-  // ---- My Location: satellite map + beat & compartment layers + live GPS ----
+  // ---- Geo Location: satellite map + beat & compartment layers + live GPS ----
   const ATR_MAP={started:false,map:null};
   function loadScript(src){return new Promise((ok,bad)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>bad(new Error('Could not load '+src));document.head.appendChild(s);});}
   function loadCss(href){const l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
@@ -646,8 +721,9 @@
     }
     map.on('moveend overlayadd overlayremove',drawLabels);drawLabels();
     // Tap anywhere: which compartment / beat is this?
-    map.on('click',e=>{const {lat,lng}=e.latlng;
+    map.on('click',e=>{if(window.geoPick){geoPick(e.latlng);return;}const {lat,lng}=e.latlng;
       L.popup({maxWidth:280}).setLatLng(e.latlng).setContent(`${whereHtml(lat,lng)}<div class="mp-ll">${lat.toFixed(6)}, ${lng.toFixed(6)}</div>`).openOn(map);});
+    geoMapReady();
     startGps();
   }
   // Live GPS
@@ -664,15 +740,15 @@
         gps.marker=L.marker(ll,{icon:L.divIcon({className:'me',html:'<i></i>',iconSize:[22,22]}),zIndexOffset:1000}).addTo(map);
       }else{gps.marker.setLatLng(ll);gps.acc.setLatLng(ll).setRadius(p.coords.accuracy);}
       if(first)map.setView(ll,Math.max(map.getZoom(),15));else if(gps.follow)map.panTo(ll,{animate:true});
-      setGps('ok',null,p);
+      setGps('ok',null,p);geoFix(p);
     },err=>{
       const m=err.code===1?'Location permission was denied. Turn on location for this app or site and tap “Locate me”.':
               err.code===3?'Location is taking long. Move to open sky and tap “Locate me”.':'Location is not available right now. Check that GPS is on.';
       setGps('err',m);if(err.code===1){navigator.geolocation.clearWatch(gps.id);gps.id=null;}
-    },{enableHighAccuracy:true,maximumAge:5000,timeout:30000});
+    },{enableHighAccuracy:true,maximumAge:2000,timeout:30000});
   }
   function setGps(state,msg,p){
-    const box=$('gpsInfo');box.className='gps-info '+state;
+    const box=$('gpsInfo');box.classList.remove('ok','wait','err');box.classList.add(state);
     if(state!=='ok'){$('gpsBody').innerHTML=`<div class="mp-out">${esc(msg)}</div>`;return;}
     const c=p.coords,t=new Date(p.timestamp).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     $('gpsBody').innerHTML=whereHtml(c.latitude,c.longitude)+
@@ -683,6 +759,187 @@
     if(gps.id===null)startGps();});
   $('gpsFollow').addEventListener('change',e=>gps.follow=e.target.checked);
   $('gpsToggle').addEventListener('click',()=>$('gpsInfo').classList.toggle('min'));
+
+  // ---- Geo Location modes: My Location / Geo Tracker / KML Track ----
+  const toRad=d=>d*Math.PI/180,toDeg=r=>r*180/Math.PI;
+  function distM(a,b){const R=6371008.8,dLa=toRad(b[0]-a[0]),dLo=toRad(b[1]-a[1]);
+    const h=Math.sin(dLa/2)**2+Math.cos(toRad(a[0]))*Math.cos(toRad(b[0]))*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+  function bearing(a,b){const y=Math.sin(toRad(b[1]-a[1]))*Math.cos(toRad(b[0])),
+    x=Math.cos(toRad(a[0]))*Math.sin(toRad(b[0]))-Math.sin(toRad(a[0]))*Math.cos(toRad(b[0]))*Math.cos(toRad(b[1]-a[1]));return (toDeg(Math.atan2(y,x))+360)%360;}
+  const fmtD=m=>m<1000?Math.round(m)+' m':(m/1000).toFixed(m<10000?2:1)+' km';
+  const card=d=>['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(d/22.5)%16];
+  let geoMode='loc';
+  function setMode(m){geoMode=m;$('gpsInfo').dataset.mode=m;$('gpsInfo').classList.remove('min');
+    document.querySelectorAll('.geo-modes button').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+    $('geoTitle').textContent={loc:'My live location',nav:'Geo Tracker – direction to a point',trk:'KML Track – record your path'}[m];
+    if(m!=='nav')stopPick();
+    if(ATR_MAP.map&&gps.id===null)startGps();}
+  document.querySelectorAll('.geo-modes button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+  const myLL=()=>gps.last?[gps.last.coords.latitude,gps.last.coords.longitude]:null;
+
+  // Geo Tracker
+  const nav={tgt:null,name:'',marker:null,line:null,pts:[],heading:null,compass:false,dirIcon:null};
+  function parseLL(s){
+    s=String(s||'').trim();if(!s)return null;
+    const dms=/(\d+(?:\.\d+)?)\s*[°º:d\s]\s*(?:(\d+(?:\.\d+)?)\s*['′m:\s]\s*)?(?:(\d+(?:\.\d+)?)\s*(?:["″]|''|s)?\s*)?([NSEW])/gi;
+    let m,v=[];while((m=dms.exec(s))){let d=+m[1]+(+m[2]||0)/60+(+m[3]||0)/3600;const h=m[4].toUpperCase();if(h==='S'||h==='W')d=-d;v.push([h,d]);}
+    let lat,lng;
+    if(v.length>=2){const la=v.find(x=>'NS'.includes(x[0])),lo=v.find(x=>'EW'.includes(x[0]));if(la&&lo){lat=la[1];lng=lo[1];}}
+    if(lat===undefined){const n=(s.match(/-?\d+(?:\.\d+)?/g)||[]).map(Number);if(n.length<2)return null;[lat,lng]=n;
+      if(Math.abs(lat)>60&&Math.abs(lng)<60)[lat,lng]=[lng,lat];} // India: lat < 40, long > 60
+    if(!(Math.abs(lat)<=90&&Math.abs(lng)<=180))return null;return [lat,lng];}
+  function setTarget(ll,name){
+    nav.tgt=ll;nav.name=name||'';const map=ATR_MAP.map;
+    localStorage.setItem('atrNavTarget',JSON.stringify({ll,name:nav.name}));
+    $('navIn').value=ll[0].toFixed(6)+', '+ll[1].toFixed(6);
+    if(!nav.marker)nav.marker=L.marker(ll,{icon:L.divIcon({className:'tgt',html:'<i></i>',iconSize:[26,26],iconAnchor:[13,30]}),zIndexOffset:900}).addTo(map);
+    else nav.marker.setLatLng(ll);
+    nav.marker.bindTooltip(esc(nav.name||'Target')+'<br>'+ll[0].toFixed(5)+', '+ll[1].toFixed(5),{direction:'top',offset:[0,-28]});
+    const me=myLL();map.fitBounds(L.latLngBounds(me?[me,ll]:[ll,ll]).pad(.3),{maxZoom:17});
+    updNav();}
+  function clearTarget(){nav.tgt=null;localStorage.removeItem('atrNavTarget');
+    if(nav.marker){nav.marker.remove();nav.marker=null;}if(nav.line){nav.line.remove();nav.line=null;}
+    if(nav.dirIcon){nav.dirIcon.remove();nav.dirIcon=null;}
+    $('navDist').textContent='No target';$('navDist').className='';$('navBear').textContent='Enter a latitude-longitude point below';$('navArrow').style.transform='';}
+  function updNav(){
+    if(!nav.tgt)return;const me=myLL(),map=ATR_MAP.map;
+    if(!me){$('navDist').textContent='Waiting for GPS…';$('navBear').textContent='Target '+nav.tgt[0].toFixed(5)+', '+nav.tgt[1].toFixed(5);return;}
+    const d=distM(me,nav.tgt),b=bearing(me,nav.tgt);
+    if(!nav.line)nav.line=L.polyline([me,nav.tgt],{color:'#FF5A4E',weight:3,dashArray:'8 6',interactive:false}).addTo(map);else nav.line.setLatLngs([me,nav.tgt]);
+    const rel=nav.heading==null?b:(b-nav.heading+360)%360;
+    $('navArrow').style.transform=`rotate(${rel}deg)`;
+    const html=`<svg viewBox="0 0 56 56" style="transform:rotate(${b}deg)"><path d="M28 2l8 16h-16z" fill="#FF5A4E" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>`;
+    if(!nav.dirIcon)nav.dirIcon=L.marker(me,{interactive:false,zIndexOffset:1100,icon:L.divIcon({className:'me-dir',html,iconSize:[56,56]})}).addTo(map);
+    else{nav.dirIcon.setLatLng(me);nav.dirIcon.getElement()&&(nav.dirIcon.getElement().innerHTML=html);}
+    const acc=gps.last.coords.accuracy;
+    if(d<=Math.max(10,acc)){$('navDist').textContent='You have reached';$('navDist').className='nav-ok';}
+    else{$('navDist').textContent=fmtD(d);$('navDist').className='';}
+    $('navBear').innerHTML=`Head <b style="display:inline;font-size:inherit">${Math.round(b)}° ${card(b)}</b>${nav.name?' to '+esc(nav.name):''}`+
+      (nav.heading==null?' · arrow points from North':' · arrow follows your phone');
+  }
+  $('navSet').addEventListener('click',()=>{const ll=parseLL($('navIn').value);
+    if(!ll){$('navNote').textContent='Could not read that point. Use e.g. 16.3742, 78.8301';return;}setTarget(ll,'');});
+  $('navIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('navSet').click();}});
+  $('navClear').addEventListener('click',clearTarget);
+  function stopPick(){window.geoPick=null;document.body.classList.remove('picking');$('navPick').textContent='👆 Tap on map';}
+  $('navPick').addEventListener('click',()=>{if(window.geoPick){stopPick();return;}
+    document.body.classList.add('picking');$('navPick').textContent='Tap the map…';
+    window.geoPick=ll=>{stopPick();setTarget([ll.lat,ll.lng],'Map point');};});
+  $('navLoad').addEventListener('click',()=>$('navFile').click());
+  $('navFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;e.target.value='';
+    const t=await f.text();let pts=[];
+    try{
+      if(/<kml|<gpx/i.test(t)){const x=new DOMParser().parseFromString(t,'application/xml');
+        x.querySelectorAll('Placemark').forEach((p,i)=>{const nm=(p.querySelector('name')||{}).textContent||('Point '+(i+1));
+          const c=p.querySelector('Point coordinates')||p.querySelector('coordinates');if(!c)return;
+          const v=c.textContent.trim().split(/\s+/)[0].split(',').map(Number);if(v.length>=2&&!isNaN(v[0]))pts.push({n:nm.trim(),ll:[v[1],v[0]]});});
+        x.querySelectorAll('wpt,rtept').forEach((w,i)=>pts.push({n:((w.querySelector('name')||{}).textContent||'Point '+(i+1)).trim(),ll:[+w.getAttribute('lat'),+w.getAttribute('lon')]}));
+      }else t.split(/\r?\n/).forEach((line,i)=>{const ll=parseLL(line);if(ll){const nm=line.split(/[,;\t]/).map(s=>s.trim()).find(s=>s&&!/^-?\d+(\.\d+)?$/.test(s)&&!/[°'"]/.test(s));pts.push({n:nm||('Point '+(pts.length+1)),ll});}});
+    }catch(err){pts=[];}
+    nav.pts=pts.filter(p=>p.ll&&isFinite(p.ll[0])&&isFinite(p.ll[1]));
+    if(!nav.pts.length){$('navNote').textContent='No latitude-longitude points found in '+f.name+'.';$('navList').hidden=true;return;}
+    $('navNote').textContent=nav.pts.length+' point'+(nav.pts.length>1?'s':'')+' loaded from '+f.name+'. Choose one.';
+    $('navList').innerHTML=nav.pts.map((p,i)=>`<option value="${i}">${esc(p.n)} (${p.ll[0].toFixed(5)}, ${p.ll[1].toFixed(5)})</option>`).join('');
+    $('navList').hidden=nav.pts.length<2;const p=nav.pts[0];setTarget(p.ll,p.n);});
+  $('navList').addEventListener('change',e=>{const p=nav.pts[+e.target.value];if(p)setTarget(p.ll,p.n);});
+  function onOrient(e){let h=null;
+    if(typeof e.webkitCompassHeading==='number')h=e.webkitCompassHeading;
+    else if(e.absolute&&typeof e.alpha==='number')h=360-e.alpha;
+    if(h==null)return;const so=(screen.orientation&&screen.orientation.angle)||window.orientation||0;
+    nav.heading=(h+so+360)%360;updNav();}
+  $('navCompass').addEventListener('click',async()=>{
+    if(nav.compass){window.removeEventListener('deviceorientationabsolute',onOrient);window.removeEventListener('deviceorientation',onOrient);
+      nav.compass=false;nav.heading=null;$('navCompass').textContent='🧭 Compass';updNav();return;}
+    try{if(typeof DeviceOrientationEvent!=='undefined'&&DeviceOrientationEvent.requestPermission){if(await DeviceOrientationEvent.requestPermission()!=='granted')throw 0;}}
+    catch(e){$('navNote').textContent='Compass permission was not given.';return;}
+    if('ondeviceorientationabsolute' in window)window.addEventListener('deviceorientationabsolute',onOrient);
+    else window.addEventListener('deviceorientation',onOrient);
+    nav.compass=true;$('navCompass').textContent='🧭 Compass on';
+    setTimeout(()=>{if(nav.compass&&nav.heading==null)$('navNote').textContent='This device has no compass. The arrow points from North (top).';},3000);});
+
+  // KML Track
+  const trk={on:false,pts:[],start:null,end:null,line:null,lock:null,timer:null};
+  try{const s=JSON.parse(localStorage.getItem('atrTrack')||'null');if(s&&s.pts){Object.assign(trk,{pts:s.pts,start:s.start,end:s.end,on:!!s.on});}}catch(e){}
+  const saveTrk=()=>{try{localStorage.setItem('atrTrack',JSON.stringify({pts:trk.pts,start:trk.start,end:trk.end,on:trk.on}));}catch(e){}};
+  function trkLen(){let d=0;for(let i=1;i<trk.pts.length;i++)d+=distM(trk.pts[i-1],trk.pts[i]);return d;}
+  function hms(ms){const s=Math.max(0,Math.round(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;
+    return (h?h+':':'')+String(m).padStart(2,'0')+':'+String(x).padStart(2,'0');}
+  function drawTrk(){
+    $('trkPts').textContent=trk.pts.length;$('trkDist').textContent=fmtD(trkLen());
+    $('trkTime').textContent=trk.start?hms((trk.on?Date.now():(trk.end||Date.now()))-trk.start):'00:00';
+    $('trkState').textContent=trk.on?'Recording':(trk.pts.length?'Stopped – ready to export':'Not recording');
+    $('trkState').classList.toggle('on',trk.on);
+    $('trkStart').disabled=trk.on;$('trkStop').disabled=!trk.on;
+    const done=!trk.on&&trk.pts.length>1;$('trkSave').disabled=!done;$('trkShare').disabled=!done;$('trkClear').disabled=trk.on||!trk.pts.length;
+    $('trkStart').textContent=trk.pts.length&&!trk.on?'● New track':'● Start track';
+    if(ATR_MAP.map){const ll=trk.pts.map(p=>[p[0],p[1]]);
+      if(!trk.line)trk.line=L.polyline(ll,{color:'#FF2E63',weight:4,opacity:.95,interactive:false}).addTo(ATR_MAP.map);else trk.line.setLatLngs(ll);}
+  }
+  async function wake(on){try{if(window.ATRApp&&ATRApp.keepScreenOn)ATRApp.keepScreenOn(!!on);}catch(e){}
+    try{if(on&&navigator.wakeLock&&!trk.lock){trk.lock=await navigator.wakeLock.request('screen');trk.lock.addEventListener('release',()=>trk.lock=null);}
+    else if(!on&&trk.lock){await trk.lock.release();trk.lock=null;}}catch(e){}}
+  document.addEventListener('visibilitychange',()=>{if(trk.on&&document.visibilityState==='visible')wake(true);});
+  function trkAdd(p){if(!trk.on)return;const c=p.coords;if(c.accuracy>50)return;
+    const pt=[+c.latitude.toFixed(7),+c.longitude.toFixed(7),c.altitude==null?null:Math.round(c.altitude*10)/10,p.timestamp||Date.now(),Math.round(c.accuracy)];
+    const last=trk.pts[trk.pts.length-1];if(last&&distM(last,pt)<Math.max(3,c.accuracy/3))return;
+    trk.pts.push(pt);saveTrk();drawTrk();}
+  $('trkStart').addEventListener('click',()=>{
+    if(trk.pts.length&&!confirmNew())return;
+    Object.assign(trk,{on:true,pts:[],start:Date.now(),end:null});saveTrk();wake(true);
+    if(gps.id===null)startGps();if(gps.last)trkAdd(gps.last);
+    clearInterval(trk.timer);trk.timer=setInterval(drawTrk,1000);drawTrk();});
+  function confirmNew(){return trk.pts.length<2||window.__trkConfirm==='yes'||(window.__trkConfirm=null,$('trkState').textContent='Export or clear the last track first, or tap “New track” again to discard it.',window.__trkConfirm='yes',false);}
+  $('trkStop').addEventListener('click',()=>{trk.on=false;trk.end=Date.now();window.__trkConfirm=null;saveTrk();wake(false);clearInterval(trk.timer);drawTrk();
+    if(trk.pts.length>1)ATR_MAP.map.fitBounds(trk.line.getBounds().pad(.2));});
+  $('trkClear').addEventListener('click',()=>{Object.assign(trk,{on:false,pts:[],start:null,end:null});window.__trkConfirm=null;saveTrk();drawTrk();});
+  function trkKml(){
+    const x=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const d=new Date(trk.start),pad=n=>String(n).padStart(2,'0');
+    const stamp=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}`;
+    const name='ATR_Track_'+stamp,iso=t=>new Date(t).toISOString(),first=trk.pts[0],last=trk.pts[trk.pts.length-1];
+    const beats=[...new Set(trk.pts.filter((p,i)=>i%5===0||i===trk.pts.length-1).map(p=>{const b=window.ATR_BEATS&&find(window.ATR_BEATS,p[0],p[1]);return b?b.properties.beat:null;}).filter(Boolean))];
+    const co=p=>`${p[1]},${p[0]}${p[2]!=null?','+p[2]:''}`;
+    const info=`Start: ${new Date(trk.start).toLocaleString('en-IN')}\nEnd: ${new Date(trk.end||last[3]).toLocaleString('en-IN')}\nDuration: ${hms((trk.end||last[3])-trk.start)}\nDistance: ${fmtD(trkLen())}\nPoints: ${trk.pts.length}${beats.length?'\nBeats: '+beats.join(', '):''}\nRecorded with ATR DBMS – Amrabad Tiger Reserve`;
+    const kml=`<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+  <name>${name}</name>
+  <description><![CDATA[${info.replace(/\n/g,'<br>')}]]></description>
+  <Style id="track"><LineStyle><color>ff632eff</color><width>4</width></LineStyle></Style>
+  <Style id="start"><IconStyle><color>ff00c000</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle></Style>
+  <Style id="end"><IconStyle><color>ff0000ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-square.png</href></Icon></IconStyle></Style>
+  <Placemark>
+    <name>${name}</name>
+    <description><![CDATA[${info.replace(/\n/g,'<br>')}]]></description>
+    <TimeSpan><begin>${iso(trk.start)}</begin><end>${iso(trk.end||last[3])}</end></TimeSpan>
+    <styleUrl>#track</styleUrl>
+    <LineString><tessellate>1</tessellate><altitudeMode>clampToGround</altitudeMode>
+      <coordinates>${trk.pts.map(co).join(' ')}</coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark><name>Start</name><TimeStamp><when>${iso(first[3])}</when></TimeStamp><styleUrl>#start</styleUrl><Point><coordinates>${co(first)}</coordinates></Point></Placemark>
+  <Placemark><name>End</name><TimeStamp><when>${iso(last[3])}</when></TimeStamp><styleUrl>#end</styleUrl><Point><coordinates>${co(last)}</coordinates></Point></Placemark>
+  <Folder><name>Track points with time</name><visibility>0</visibility>
+    <Placemark><name>${name} (timed)</name><visibility>0</visibility><gx:Track>
+${trk.pts.map(p=>`      <when>${iso(p[3])}</when>`).join('\n')}
+${trk.pts.map(p=>`      <gx:coord>${p[1]} ${p[0]} ${p[2]!=null?p[2]:0}</gx:coord>`).join('\n')}
+    </gx:Track></Placemark>
+  </Folder>
+</Document>
+</kml>
+`;return {name:name+'.kml',kml};}
+  const KML_MIME='application/vnd.google-earth.kml+xml';
+  $('trkSave').addEventListener('click',()=>{const {name,kml}=trkKml();window.__trkConfirm='yes';
+    if(window.ATRApp&&ATRApp.saveDataUrl){ATRApp.saveDataUrl('data:'+KML_MIME+';base64,'+btoa(unescape(encodeURIComponent(kml))),name,KML_MIME);return;}
+    const u=URL.createObjectURL(new Blob([kml],{type:KML_MIME})),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);});
+  if(navigator.canShare&&!window.ATRApp){try{if(navigator.canShare({files:[new File(['x'],'t.kml',{type:KML_MIME})]}))$('trkShare').hidden=false;}catch(e){}}
+  $('trkShare').addEventListener('click',async()=>{const {name,kml}=trkKml();
+    try{await navigator.share({files:[new File([kml],name,{type:KML_MIME})],title:name});}catch(e){}});
+  function geoFix(p){trkAdd(p);updNav();}
+  function geoMapReady(){
+    drawTrk();if(trk.on){wake(true);clearInterval(trk.timer);trk.timer=setInterval(drawTrk,1000);setMode('trk');}
+    try{const t=JSON.parse(localStorage.getItem('atrNavTarget')||'null');if(t&&t.ll){setTarget(t.ll,t.name);if(!trk.on)ATR_MAP.map.fitBounds(L.latLngBounds([t.ll,t.ll]).pad(.3),{maxZoom:15});}}catch(e){}
+  }
 
   window.ATR_READY=true;
   show(location.hash.slice(1));
