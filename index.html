@@ -608,7 +608,7 @@
   </div>
 </footer>
 
-<script src="assets/ticker.js"></script>
+<script>document.write('<script src="assets/ticker.js?v='+Date.now()+'"><\/script>')</script>
 <script>
   const d=new Date();
   document.getElementById('yr').textContent=d.getFullYear();
@@ -665,6 +665,8 @@
   })();
 
   // ---- Geo Location: satellite map + beat & compartment layers + live GPS ----
+  // Bump MAP_V whenever assets/map/beats.js or compartments.js change, so browsers and the app fetch the new layers.
+  const MAP_V='20261124-2';
   const ATR_MAP={started:false,map:null};
   function loadScript(src){return new Promise((ok,bad)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>bad(new Error('Could not load '+src));document.head.appendChild(s);});}
   function loadCss(href){const l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);}
@@ -695,7 +697,7 @@
     try{
       loadCss('assets/leaflet/leaflet.css');
       await loadScript('assets/leaflet/leaflet.js');
-      await Promise.all([loadScript('assets/map/beats.js'),loadScript('assets/map/compartments.js')]);
+      await Promise.all([loadScript('assets/map/beats.js?v='+MAP_V),loadScript('assets/map/compartments.js?v='+MAP_V)]);
     }catch(e){$('mapMsg').textContent='Map could not load. Check the internet connection and open this tab again.';ATR_MAP.started=false;return;}
     prep(window.ATR_BEATS);prep(window.ATR_COMPARTMENTS);
     $('mapMsg').remove();
